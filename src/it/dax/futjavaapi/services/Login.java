@@ -1,5 +1,8 @@
 package it.dax.futjavaapi.services;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.sun.deploy.ref.AppRef;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -9,6 +12,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +81,7 @@ public class Login{
         urlParameters.add(new BasicNameValuePair("phoneNumber", ""));
         urlParameters.add(new BasicNameValuePair("passwordForPhone", ""));
         urlParameters.add(new BasicNameValuePair("_rememberMe", "on"));
-        urlParameters.add(new BasicNameValuePair("rememberMe", "on"));
+        // urlParameters.add(new BasicNameValuePair("rememberMe", "on"));
         urlParameters.add(new BasicNameValuePair("gCaptchaResponse", ""));
         urlParameters.add(new BasicNameValuePair("isPhoneNumberLogin", "false"));
         urlParameters.add(new BasicNameValuePair("isIncompletePhone", ""));
@@ -95,6 +100,10 @@ public class Login{
         HttpGet request = new HttpGet(thirdUrl + "&_eventId=end");
         request.addHeader("User-Agent", USER_AGENT);
         HttpResponse response = client.execute(request);
+
+        Gson gson = new Gson();
+
+        String verifyLogin = gson.toJson(EntityUtils.toString(response.getEntity()));
     }
 
 }
