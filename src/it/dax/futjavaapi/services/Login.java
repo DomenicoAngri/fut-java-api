@@ -1,8 +1,6 @@
 package it.dax.futjavaapi.services;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.sun.deploy.ref.AppRef;
+import it.dax.futjavaapi.constants.ServicesConstants;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -13,24 +11,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Login{
-
-    private final String
-            USER_AGENT = "Mozilla/5.0",
-            BASE_SIGNIN_URL = "https://signin.ea.com",
-
-            PROMPT = "login",
-            ACCESS_TOKEN = "null",
-            CLIENT_ID = "FIFA-18-WEBCLIENT",
-            RESPONSE_TYPE = "token",
-            DISPLAY = "web2/login",
-            LOCALE = "it_IT",
-            REDIRECT_URI = "https://www.easports.com/it/fifa/ultimate-team/web-app/auth.html",
-            SCOPE = "basic.identity+offline+signin";
 
     public String firstGet() throws Exception{
         // URL della chiamata get.
@@ -101,9 +87,39 @@ public class Login{
         request.addHeader("User-Agent", USER_AGENT);
         HttpResponse response = client.execute(request);
 
-        Gson gson = new Gson();
+        String verifyLogin = EntityUtils.toString(response.getEntity());
 
-        String verifyLogin = gson.toJson(EntityUtils.toString(response.getEntity()));
+        Document doc = Jsoup.parse(verifyLogin);
+
+    }
+
+    public String login(String username, String password){
+        final String signinUrl =
+                ServicesConstants.BASE_SIGNIN_URL +
+                "prompt=" + ServicesConstants.PROMPT_LOGIN +
+                "&accessToken=null" +
+                "&client_id=" + ServicesConstants.CLIENT_ID +
+                "&response_type=" + ServicesConstants.RESPONSE_TYPE_TOKEN +
+                "&display=" + ServicesConstants.DISPLAY +
+                "&locale=" + ServicesConstants.LOCALE_IT +
+                "&redirect_uri=" + ServicesConstants.REDIRECT_URI +
+                "&scope=" + ServicesConstants.SCOPE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return null;
     }
 
 }
