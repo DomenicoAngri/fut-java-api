@@ -1,5 +1,8 @@
 package it.dax.futjavaapi.services;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class EAHashingAlgorithm{
 
     private static final int[]
@@ -11,18 +14,31 @@ public class EAHashingAlgorithm{
     // TODO capire se è corretto
     private static final char[] hexCharacters = "0123456789abcdef".toCharArray();
 
+    public String hash(String securityAnswer){
 
+        // TODO fare eccezione della stringa securityAnswer e vedere se sostituire le securityAnswer con una stringa qui nuova dichiarata
 
+        securityAnswer = cleanSecurityAnswer(securityAnswer);
 
+        return securityAnswer == "" ? "" : calculateHash(securityAnswer);
+    }
 
+    private String cleanSecurityAnswer(String securityAnswer){
+        // TODO capire se è corretto e se sostituire security con una stringa nuova da inizializzare qui
+        Pattern firstPatternToReplace = Pattern.compile("^\\s*");
+        Pattern secondPatternToReplace = Pattern.compile("\\s*$");
+        Pattern thirdPatternToReplace = Pattern.compile("\\s{2,}");
 
+        Matcher firstMatcher = firstPatternToReplace.matcher(securityAnswer);
+        Matcher secondMatcher = secondPatternToReplace.matcher(securityAnswer);
+        Matcher thirdMatcher = thirdPatternToReplace.matcher(securityAnswer);
 
+        securityAnswer = firstMatcher.replaceAll("");
+        securityAnswer = secondMatcher.replaceAll("");
+        securityAnswer = thirdMatcher.replaceAll(" ");
 
-
-
-
-
-
+        return securityAnswer;
+    }
 
     private String calculateHash(String securityAnswer){
 
@@ -181,7 +197,7 @@ public class EAHashingAlgorithm{
         String result = "";
 
         for (int j = 0; j <= 3; j++)
-            result += hexCharacters[(number >> (j * 8 + 4)) & 0x0F] + hexCharacters[(number >> (j * 8)) & 0x0F].ToString();
+            result += hexCharacters[(number >> (j * 8 + 4)) & 0x0F] + hexCharacters[(number >> (j * 8)) & 0x0F];
 
         return result;
     }
