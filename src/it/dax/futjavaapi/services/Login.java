@@ -1,21 +1,29 @@
 package it.dax.futjavaapi.services;
 
 import it.dax.futjavaapi.constants.ServicesConstants;
+import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Login{
+
+    private String cookies;
 
     public boolean login(String username, String password, String temporaneyToken, String securityAnswer){
         // 1. Get fid
@@ -28,14 +36,19 @@ public class Login{
         return true;
     }
 
+    public Login(){
+        cookies = "";
+    }
+
     public void testLogin(String username, String password, String tempCode, String securityAnswer) throws Exception{
         String urlWithFidParameter = getUrlWithFidParameter();
         System.out.println(urlWithFidParameter);
         String executionAndInitrefParameters = getExecutionAndInitrefParameters(urlWithFidParameter);
         System.out.println(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters);
-        String getFromPostLogin = postLogin(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters, username, password);
+        // String getFromPostLogin = postLogin(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters, username, password);
+        String getFromPostLogin = postLoginApache(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters, username, password);
         System.out.println(getFromPostLogin);
-        fourthGet(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters);
+        fourthGet(ServicesConstants.BASE_SIGNIN_URL + getFromPostLogin);
     }
 
     private String getUrlWithFidParameter() throws Exception{
@@ -65,49 +78,64 @@ public class Login{
         return response.getHeaders("Location")[0].getValue();
     }
 
-    private String getExecutionAndInitrefParameters(String secondUrl) throws Exception{
+    private String getExecutionAndInitrefParameters(String urlWithFidParameter) throws Exception{
         HttpClient client = HttpClientBuilder.create().disableRedirectHandling().build();
-        HttpGet request = new HttpGet(secondUrl);
+        HttpGet request = new HttpGet(urlWithFidParameter);
         request.addHeader("User-Agent", ServicesConstants.USER_AGENT);
         HttpResponse response = client.execute(request);
+        setCookies(response.getHeaders("Set-Cookie")[0].getValue());
         return response.getHeaders("Location")[0].getValue();
     }
 
-    public String postLogin(String secondUrl, String username, String password) throws Exception{
+    public String postLoginApache(String executionAndInitrefParameters, String username, String password) throws Exception{
         HttpClient client = HttpClientBuilder.create().disableRedirectHandling().build();
-        HttpPost post = new HttpPost(secondUrl);
-        post.setHeader("User-Agent", ServicesConstants.USER_AGENT);
+        HttpPost request = new HttpPost(executionAndInitrefParameters);
+
+        request.setHeader("User-Agent", ServicesConstants.USER_AGENT);
+        request.setHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.setHeader("Cookie", getCookies());
 
         // Params list
-        List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+        List<NameValuePair> urlParameters = new ArrayList<>();
         urlParameters.add(new BasicNameValuePair("email", username));
         urlParameters.add(new BasicNameValuePair("password", password));
-        urlParameters.add(new BasicNameValuePair("_eventId", "submit"));
         urlParameters.add(new BasicNameValuePair("country", "IT"));
-        urlParameters.add(new BasicNameValuePair("phoneNumber", ""));
-        urlParameters.add(new BasicNameValuePair("passwordForPhone", ""));
         urlParameters.add(new BasicNameValuePair("_rememberMe", "on"));
-        urlParameters.add(new BasicNameValuePair("gCaptchaResponse", ""));
+        urlParameters.add(new BasicNameValuePair("rememberMe", "on"));
+        urlParameters.add(new BasicNameValuePair("_eventId", "submit"));
         urlParameters.add(new BasicNameValuePair("isPhoneNumberLogin", "false"));
         urlParameters.add(new BasicNameValuePair("isIncompletePhone", ""));
+        urlParameters.add(new BasicNameValuePair("phoneNumber", ""));
+        urlParameters.add(new BasicNameValuePair("passwordForPhone", ""));
+        urlParameters.add(new BasicNameValuePair("gCaptchaResponse", ""));
 
         // Setto la lista di parametri nella chiamata post
-        post.setEntity(new UrlEncodedFormEntity(urlParameters));
+        request.setEntity(new UrlEncodedFormEntity(urlParameters, Consts.UTF_8));
 
-        HttpResponse response = client.execute(post);
+        HttpResponse response = client.execute(request);
 
         return response.getHeaders("Location")[0].getValue();
     }
 
     public void fourthGet(String thirdUrl) throws Exception{
-        HttpClient client = HttpClientBuilder.create().build();
+        // HttpClient client = HttpClientBuilder.create().build();
+        HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(thirdUrl + "&_eventId=end");
+        request.setHeader("Cookie", getCookies());
         request.addHeader("User-Agent", ServicesConstants.USER_AGENT);
         HttpResponse response = client.execute(request);
 
         String verifyLogin = EntityUtils.toString(response.getEntity());
 
         Document doc = Jsoup.parse(verifyLogin);
+    }
+
+    public String getCookies() {
+        return cookies;
+    }
+
+    public void setCookies(String cookies) {
+        this.cookies = cookies;
     }
 
 }
