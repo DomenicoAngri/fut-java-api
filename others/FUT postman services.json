@@ -1,0 +1,732 @@
+{
+	"info": {
+		"name": "FIFA API",
+		"_postman_id": "09a9c830-0b73-6d72-d9c4-6153d8c8c645",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1) Get fid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://accounts.ea.com/connect/auth?prompt={{prompt}}&accessToken={{accessToken}}&client_id=FIFA-18-WEBCLIENT&response_type={{response_type}}&display=web2/login&locale={{locale}}&redirect_uri=https://www.easports.com/it/fifa/ultimate-team/web-app/auth.html&scope=basic.identity+offline+signin",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"ea",
+						"com"
+					],
+					"path": [
+						"connect",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "prompt",
+							"value": "{{prompt}}",
+							"equals": true
+						},
+						{
+							"key": "accessToken",
+							"value": "{{accessToken}}",
+							"equals": true
+						},
+						{
+							"key": "client_id",
+							"value": "FIFA-18-WEBCLIENT",
+							"equals": true
+						},
+						{
+							"key": "response_type",
+							"value": "{{response_type}}",
+							"equals": true
+						},
+						{
+							"key": "display",
+							"value": "web2/login",
+							"equals": true
+						},
+						{
+							"key": "locale",
+							"value": "{{locale}}",
+							"equals": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.easports.com/it/fifa/ultimate-team/web-app/auth.html",
+							"equals": true
+						},
+						{
+							"key": "scope",
+							"value": "basic.identity+offline+signin",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2) Get execution and initref",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://signin.ea.com/p/web2/login?fid={{fid}}",
+					"protocol": "https",
+					"host": [
+						"signin",
+						"ea",
+						"com"
+					],
+					"path": [
+						"p",
+						"web2",
+						"login"
+					],
+					"query": [
+						{
+							"key": "fid",
+							"value": "{{fid}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3) Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "{{country}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "{{phoneNumber}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "passwordForPhone",
+							"value": "{{passwordForPhone}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "_rememberMe",
+							"value": "{{_rememberMe}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "_eventId",
+							"value": "{{_eventId}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "gCaptchaResponse",
+							"value": "{{gCaptchaResponse}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "isPhoneNumberLogin",
+							"value": "{{isPhoneNumberLogin}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "isIncompletePhone",
+							"value": "{{isIncompletePhone}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://signin.ea.com/p/web2/login?execution={{execution}}&initref={{initref}}",
+					"protocol": "https",
+					"host": [
+						"signin",
+						"ea",
+						"com"
+					],
+					"path": [
+						"p",
+						"web2",
+						"login"
+					],
+					"query": [
+						{
+							"key": "execution",
+							"value": "{{execution}}",
+							"equals": true
+						},
+						{
+							"key": "initref",
+							"value": "{{initref}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4) Get with end - Per controllo login corretto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://signin.ea.com/p/web2/login?execution={{execution}}&initref={{initref}}&_eventId=end",
+					"protocol": "https",
+					"host": [
+						"signin",
+						"ea",
+						"com"
+					],
+					"path": [
+						"p",
+						"web2",
+						"login"
+					],
+					"query": [
+						{
+							"key": "execution",
+							"value": "{{execution}}",
+							"equals": true
+						},
+						{
+							"key": "initref",
+							"value": "{{initref}}",
+							"equals": true
+						},
+						{
+							"key": "_eventId",
+							"value": "end",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5) Set codeType - Per settare da dove si vuole prendere il codice one time",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "codeType",
+							"value": "APP",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "_eventId",
+							"value": "submit",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://signin.ea.com/p/web2/login?execution={{execution}}&initref={{initref}}",
+					"protocol": "https",
+					"host": [
+						"signin",
+						"ea",
+						"com"
+					],
+					"path": [
+						"p",
+						"web2",
+						"login"
+					],
+					"query": [
+						{
+							"key": "execution",
+							"value": "{{execution}}",
+							"equals": true
+						},
+						{
+							"key": "initref",
+							"value": "{{initref}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "6) Send one time code",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "oneTimeCode",
+							"value": "350381",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "_trustThisDevice",
+							"value": "on",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "trustThisDevice",
+							"value": "on",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "_eventId",
+							"value": "submit",
+							"type": "text",
+							"description": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "https://signin.ea.com/p/web2/login?execution={{execution}}&initref={{initref}}",
+					"protocol": "https",
+					"host": [
+						"signin",
+						"ea",
+						"com"
+					],
+					"path": [
+						"p",
+						"web2",
+						"login"
+					],
+					"query": [
+						{
+							"key": "execution",
+							"value": "{{execution}}",
+							"equals": true
+						},
+						{
+							"key": "initref",
+							"value": "{{initref}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7) Get with fid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://accounts.ea.com:443/connect/auth?prompt={{prompt}}&accessToken={{accessToken}}&client_id=FIFA-18-WEBCLIENT&response_type={{response_type}}&display=web2/login&locale={{locale}}&redirect_uri=https://www.easports.com/it/fifa/ultimate-team/web-app/auth.html&scope=basic.identity+offline+signin&fid={{fid}}",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"ea",
+						"com"
+					],
+					"port": "443",
+					"path": [
+						"connect",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "prompt",
+							"value": "{{prompt}}",
+							"equals": true
+						},
+						{
+							"key": "accessToken",
+							"value": "{{accessToken}}",
+							"equals": true
+						},
+						{
+							"key": "client_id",
+							"value": "FIFA-18-WEBCLIENT",
+							"equals": true
+						},
+						{
+							"key": "response_type",
+							"value": "{{response_type}}",
+							"equals": true
+						},
+						{
+							"key": "display",
+							"value": "web2/login",
+							"equals": true
+						},
+						{
+							"key": "locale",
+							"value": "{{locale}}",
+							"equals": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.easports.com/it/fifa/ultimate-team/web-app/auth.html",
+							"equals": true
+						},
+						{
+							"key": "scope",
+							"value": "basic.identity+offline+signin",
+							"equals": true
+						},
+						{
+							"key": "fid",
+							"value": "{{fid}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8) Get pid data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://gateway.ea.com/proxy/identity/pids/me",
+					"protocol": "https",
+					"host": [
+						"gateway",
+						"ea",
+						"com"
+					],
+					"path": [
+						"proxy",
+						"identity",
+						"pids",
+						"me"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9) Get shards data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://utas.mob.v4.fut.ea.com/ut/shards/v2?_={{dateTimeNowUnix}}",
+					"protocol": "https",
+					"host": [
+						"utas",
+						"mob",
+						"v4",
+						"fut",
+						"ea",
+						"com"
+					],
+					"path": [
+						"ut",
+						"shards",
+						"v2"
+					],
+					"query": [
+						{
+							"key": "_",
+							"value": "{{dateTimeNowUnix}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "10) Get account info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://utas.external.s2.fut.ea.com/ut/game/fifa18/user/accountinfo?filterConsoleLogin=true&sku=FUT18WEB&returningUserGameYear={{userGameYearLong}}&_={{dateTimeNowUnix}}",
+					"protocol": "https",
+					"host": [
+						"utas",
+						"external",
+						"s2",
+						"fut",
+						"ea",
+						"com"
+					],
+					"path": [
+						"ut",
+						"game",
+						"fifa18",
+						"user",
+						"accountinfo"
+					],
+					"query": [
+						{
+							"key": "filterConsoleLogin",
+							"value": "true",
+							"equals": true
+						},
+						{
+							"key": "sku",
+							"value": "FUT18WEB",
+							"equals": true
+						},
+						{
+							"key": "returningUserGameYear",
+							"value": "{{userGameYearLong}}",
+							"equals": true
+						},
+						{
+							"key": "_",
+							"value": "{{dateTimeNowUnix}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "11) Get auth code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://accounts.ea.com/connect/auth?client_id=FOS-SERVER&redirect_uri=nucleus:rest&response_type=code&access_token={{accessToken}}",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"ea",
+						"com"
+					],
+					"path": [
+						"connect",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "FOS-SERVER",
+							"equals": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "nucleus:rest",
+							"equals": true
+						},
+						{
+							"key": "response_type",
+							"value": "code",
+							"equals": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{accessToken}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "12) Get authorization",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"isReadOnly\": false,\r\n\t\"sku\": \"FUT18WEB\",\r\n\t\"clientVersion\": 1,\r\n\t\"locale\": \"it-IT\",\r\n\t\"method\": \"authcode\",\r\n\t\"priorityLevel\": 4,\r\n\t\"identification\": {\r\n\t\t\"authCode\": {{authCode}},\r\n\t\t\"redirectUrl\": \"nucleus:rest\"\r\n\t},\r\n\t\"nucleusPersonaId\": {{nucleusPersonaId}},\r\n\t\"gameSku\": \"FFA18PS4\"\r\n}"
+				},
+				"url": {
+					"raw": "https://utas.external.s2.fut.ea.com/ut/auth?sku_b=FFT18&{{dateTimeNowUnix}}",
+					"protocol": "https",
+					"host": [
+						"utas",
+						"external",
+						"s2",
+						"fut",
+						"ea",
+						"com"
+					],
+					"path": [
+						"ut",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "sku_b",
+							"value": "FFT18",
+							"equals": true
+						},
+						{
+							"key": "{{dateTimeNowUnix}}",
+							"value": "",
+							"equals": false
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "13) Validate question",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://utas.external.s2.fut.ea.com/ut/game/fifa18/phishing/question?_={{dateTimeNowUnix}}",
+					"protocol": "https",
+					"host": [
+						"utas",
+						"external",
+						"s2",
+						"fut",
+						"ea",
+						"com"
+					],
+					"path": [
+						"ut",
+						"game",
+						"fifa18",
+						"phishing",
+						"question"
+					],
+					"query": [
+						{
+							"key": "_",
+							"value": "{{dateTimeNowUnix}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14) Validate answer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://utas.external.s2.fut.ea.com/ut/game/fifa18/phishing/validate?answer={{secretHashedAnswer}}",
+					"protocol": "https",
+					"host": [
+						"utas",
+						"external",
+						"s2",
+						"fut",
+						"ea",
+						"com"
+					],
+					"path": [
+						"ut",
+						"game",
+						"fifa18",
+						"phishing",
+						"validate"
+					],
+					"query": [
+						{
+							"key": "answer",
+							"value": "{{secretHashedAnswer}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,148 @@
+{
+  "id": "ed32e3d5-2641-0654-be73-7cd2618f1f69",
+  "name": "Fifa API",
+  "values": [
+    {
+      "enabled": true,
+      "key": "execution",
+      "value": "e963269011s4",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "oneTimeCode",
+      "value": "115898",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "accessToken",
+      "value": "QVQxOjEuMDozLjA6NjA6aXB2dFUxbHFFVlZRTzB4QThTR21DMDZpbzFRMExOYklhc1I6ODE3Om8zNW84",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "dateTimeNowUnix",
+      "value": "1516201870",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "authCode",
+      "value": "\"auhduhaudhausdhauhsdauhsdua\"",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "nucleusPersonaId",
+      "value": "782236426342384823",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "fid",
+      "value": "RlMxOjEuMDoyLjA6c1JSaXIxb1k5YzdHa1BQZ3c0RGlSeTlmOm8zNW83",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "initref",
+      "value": "https%3A%2F%2Faccounts.ea.com%3A443%2Fconnect%2Fauth%3Fprompt%3Dlogin%26accessToken%3Dnull%26client_id%3DFIFA-18-WEBCLIENT%26response_type%3Dtoken%26display%3Dweb2%252Flogin%26locale%3Dit_IT%26redirect_uri%3Dhttps%253A%252F%252Fwww.easports.com%252Fit%252Ffifa%252Fultimate-team%252Fweb-app%252Fauth.html%26scope%3Dbasic.identity%2Boffline%2Bsignin",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "prompt",
+      "value": "login",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "response_type",
+      "value": "token",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "locale",
+      "value": "it_IT",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "email",
+      "value": "domenico.angri@gmail.com",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "password",
+      "value": "Domy35701786!",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "country",
+      "value": "IT",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "phoneNumber",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "passwordForPhone",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "_rememberMe",
+      "value": "on",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "_eventId",
+      "value": "submit",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "gCaptchaResponse",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "isPhoneNumberLogin",
+      "value": "false",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "isIncompletePhone",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "userGameYearLong",
+      "value": "2017",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "secretHashedAnswer",
+      "value": "28342364hhf3gf2g6hf",
+      "type": "text"
+    }
+  ],
+  "timestamp": 1516269027211,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2018-01-18T13:50:53.806Z",
+  "_postman_exported_using": "Postman/5.5.0"
+}
