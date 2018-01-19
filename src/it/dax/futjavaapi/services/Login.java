@@ -1,5 +1,6 @@
 package it.dax.futjavaapi.services;
 
+import it.dax.futjavaapi.constants.CommonConstants;
 import it.dax.futjavaapi.constants.ServicesConstants;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
@@ -8,7 +9,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -20,6 +21,8 @@ import java.util.List;
 public class Login{
 
     private String cookies;
+
+    private HttpClient httpClient;
 
     public boolean login(String username, String password, String temporaneyToken, String securityAnswer){
         // 1. Get fid
@@ -33,7 +36,11 @@ public class Login{
     }
 
     public Login(){
+        // Inizializzo la stringa dei cookie vuota.
         cookies = "";
+
+        // Creo il client e disabilito la redirect automatica.
+        httpClient = HttpClientBuilder.create().disableRedirectHandling().build();
     }
 
     public void testLogin(String username, String password, String tempCode, String securityAnswer) throws Exception{
@@ -47,75 +54,67 @@ public class Login{
         fourthGet(ServicesConstants.BASE_SIGNIN_URL + getFromPostLogin);
     }
 
-    private String getUrlWithFidParameter() throws Exception{
+    private String getUriWithFidParam() throws Exception{
         // URL della chiamata get.
-        String url = ServicesConstants.BASE_AUTH_URL +
-                "prompt=" + ServicesConstants.PROMPT_LOGIN +
-                "&accessToken=" + "null" +
-                "&client_id=" + ServicesConstants.CLIENT_ID +
-                "&response_type=" + ServicesConstants.RESPONSE_TYPE_TOKEN +
-                "&display=" + ServicesConstants.DISPLAY +
-                "&locale=" + ServicesConstants.LOCALE_IT +
-                "&redirect_uri=" + ServicesConstants.REDIRECT_URI +
-                "&scope=" + ServicesConstants.SCOPE;
-
-        // Setto il client e disabilito la redirect automatica.
-        HttpClient client = HttpClientBuilder.create().disableRedirectHandling().build();
+        String uri = ServicesConstants.BASE_AUTH_URI +
+            ServicesConstants.PARAM_KEY_PROMPT_LOGIN + "=" + ServicesConstants.PARAM_VALUE_PROMPT_LOGIN +
+            "&" + ServicesConstants.PARAM_KEY_ACCESS_TOKEN + "=" + CommonConstants.NULL_STRING +
+            "&" + ServicesConstants.PARAM_KEY_CLIENT_ID + "=" + ServicesConstants.PARAM_VALUE_CLIENT_ID +
+            "&" + ServicesConstants.PARAM_KEY_RESPONSE_TYPE + "=" + ServicesConstants.PARAM_VALUE_RESPONSE_TYPE_TOKEN +
+            "&" + ServicesConstants.PARAM_KEY_DISPLAY + "=" + ServicesConstants.PARAM_VALUE_DISPLAY +
+            "&" + ServicesConstants.PARAM_KEY_LOCALE + "=" + ServicesConstants.PARAM_VALUE_LOCALE_IT +
+            "&" + ServicesConstants.PARAM_KEY_REDIRECT_URI + "=" + ServicesConstants.BASE_REDIRECT_URI +
+            "&" + ServicesConstants.PARAM_KEY_SCOPE + "=" + ServicesConstants.PARAM_VALUE_SCOPE;
 
         // Istanzio una nuova request dall'url.
-        HttpGet request = new HttpGet(url);
+        HttpGet httpGet = new HttpGet(uri);
 
         // Setto i parametri nell'header della richiesta.
-        request.addHeader("User-Agent", ServicesConstants.USER_AGENT);
+        // request.addHeader(ServicesConstants.PARAM_KEY_USER_AGENT, ServicesConstants.PARAM_VALUE_USER_AGENT);
+        setCommonHeaderParams(httpGet);
 
         // Execute della request che ritorna la response.
-        HttpResponse response = client.execute(request);
-
-        return response.getHeaders("Location")[0].getValue();
+        return httpClient.execute(httpGet).getHeaders(ServicesConstants.PARAM_KEY_LOCATION)[0].getValue();
     }
 
-    private String getExecutionAndInitrefParameters(String urlWithFidParameter) throws Exception{
-        HttpClient client = HttpClientBuilder.create().disableRedirectHandling().build();
-        HttpGet request = new HttpGet(urlWithFidParameter);
-        request.addHeader("User-Agent", ServicesConstants.USER_AGENT);
-        HttpResponse response = client.execute(request);
-        setCookies(response.getHeaders("Set-Cookie")[0].getValue());
-        return response.getHeaders("Location")[0].getValue();
+    private String getUriWithExecutionAndInitref(String uriWithFidParam) throws Exception{
+        HttpGet httpGet = new HttpGet(uriWithFidParam);
+        setCommonHeaderParams(httpGet);
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+        // TODO questi cookie non devono uscire fuori, cambiare la logica
+        setCookies(httpResponse.getHeaders(ServicesConstants.PARAM_KEY_SET_COOKIE)[0].getValue());
+        return httpResponse.getHeaders(ServicesConstants.PARAM_KEY_LOCATION)[0].getValue();
     }
 
-    public String postLoginApache(String executionAndInitrefParameters, String username, String password) throws Exception{
-        HttpClient client = HttpClientBuilder.create().disableRedirectHandling().build();
-        HttpPost request = new HttpPost(executionAndInitrefParameters);
+    // TODO vedere se nelle chiamate si devono settare i cookie.
+    public String postLogin(String uriWithExecutionAndInitref, String username, String password) throws Exception{
+        HttpPost httpPost = new HttpPost(uriWithExecutionAndInitref);
 
-        request.setHeader("User-Agent", ServicesConstants.USER_AGENT);
-        request.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.setHeader("Cookie", getCookies());
+        setCommonHeaderParams(httpPost);
+        httpPost.setHeader(ServicesConstants.PARAM_KEY_CONTENT_TYPE, ServicesConstants.PARAM_VALUE_URL_ENCODED_FORM_CONTENT_TYPE);
+        httpPost.setHeader(ServicesConstants.PARAM_KEY_COOKIE, getCookies());
 
         // Params list
-        List<NameValuePair> urlParameters = new ArrayList<>();
-        urlParameters.add(new BasicNameValuePair("email", username));
-        urlParameters.add(new BasicNameValuePair("password", password));
-        urlParameters.add(new BasicNameValuePair("country", "IT"));
-        urlParameters.add(new BasicNameValuePair("_rememberMe", "on"));
-        urlParameters.add(new BasicNameValuePair("rememberMe", "on"));
-        urlParameters.add(new BasicNameValuePair("_eventId", "submit"));
-        urlParameters.add(new BasicNameValuePair("isPhoneNumberLogin", "false"));
-        urlParameters.add(new BasicNameValuePair("isIncompletePhone", ""));
-        urlParameters.add(new BasicNameValuePair("phoneNumber", ""));
-        urlParameters.add(new BasicNameValuePair("passwordForPhone", ""));
-        urlParameters.add(new BasicNameValuePair("gCaptchaResponse", ""));
+        List<NameValuePair> uriParams = new ArrayList<>();
+        uriParams.add(new BasicNameValuePair("email", username));
+        uriParams.add(new BasicNameValuePair("password", password));
+        uriParams.add(new BasicNameValuePair("country", "IT"));
+        uriParams.add(new BasicNameValuePair("_rememberMe", "on"));
+        uriParams.add(new BasicNameValuePair("rememberMe", "on"));
+        uriParams.add(new BasicNameValuePair("_eventId", "submit"));
+        uriParams.add(new BasicNameValuePair("isPhoneNumberLogin", "false"));
+        uriParams.add(new BasicNameValuePair("isIncompletePhone", ""));
+        uriParams.add(new BasicNameValuePair("phoneNumber", ""));
+        uriParams.add(new BasicNameValuePair("passwordForPhone", ""));
+        uriParams.add(new BasicNameValuePair("gCaptchaResponse", ""));
 
         // Setto la lista di parametri nella chiamata post
-        request.setEntity(new UrlEncodedFormEntity(urlParameters, Consts.UTF_8));
+        httpPost.setEntity(new UrlEncodedFormEntity(uriParams, Consts.UTF_8));
 
-        HttpResponse response = client.execute(request);
-
-        return response.getHeaders("Location")[0].getValue();
+        return httpClient.execute(httpPost).getHeaders(ServicesConstants.PARAM_KEY_LOCATION)[0].getValue();
     }
 
     public void fourthGet(String thirdUrl) throws Exception{
-        // HttpClient client = HttpClientBuilder.create().build();
-        HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(thirdUrl + "&_eventId=end");
         request.setHeader("Cookie", getCookies());
         request.addHeader("User-Agent", ServicesConstants.USER_AGENT);
@@ -124,6 +123,16 @@ public class Login{
         String verifyLogin = EntityUtils.toString(response.getEntity());
 
         Document doc = Jsoup.parse(verifyLogin);
+    }
+
+    private void setCommonHeaderParams(HttpRequestBase httpRequestBase){
+        httpRequestBase.setHeader(ServicesConstants.PARAM_KEY_USER_AGENT, ServicesConstants.PARAM_VALUE_USER_AGENT);
+        httpRequestBase.setHeader(ServicesConstants.PARAM_KEY_ACCEPT_ENCODING, ServicesConstants.PARAM_VALUE_ACCEPT_ENCODING);
+        httpRequestBase.setHeader(ServicesConstants.PARAM_KEY_CONNECTION, ServicesConstants.PARAM_VALUE_CONNECTION);
+        httpRequestBase.setHeader(ServicesConstants.PARAM_KEY_PRAGMA, ServicesConstants.PARAM_VALUE_PRAGMA);
+        httpRequestBase.setHeader(ServicesConstants.PARAM_KEY_CACHE_CONTROL, ServicesConstants.PARAM_VALUE_CACHE_CONTROL);
+        httpRequestBase.setHeader(ServicesConstants.PARAM_KEY_ACCEPT, ServicesConstants.PARAM_VALUE_ACCEPT);
+        httpRequestBase.setHeader(ServicesConstants.PARAM_KEY_ACCEPT_LANGUAGE, ServicesConstants.PARAM_VALUE_ACCEPT_LANGUAGE_EN);
     }
 
     public String getCookies() {
