@@ -320,7 +320,7 @@
 					"urlencoded": [
 						{
 							"key": "oneTimeCode",
-							"value": "350381",
+							"value": "733776",
 							"type": "text",
 							"description": ""
 						},
@@ -518,7 +518,16 @@
 			"name": "10) Get account info",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Easw-Session-Data-Nucleus-Id",
+						"value": "{{easwNucleusId}}"
+					},
+					{
+						"key": "X-UT-SID",
+						"value": ""
+					}
+				],
 				"body": {},
 				"url": {
 					"raw": "https://utas.external.s2.fut.ea.com/ut/game/fifa18/user/accountinfo?filterConsoleLogin=true&sku=FUT18WEB&returningUserGameYear={{userGameYearLong}}&_={{dateTimeNowUnix}}",
@@ -660,7 +669,16 @@
 			"name": "13) Validate question",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Easw-Session-Data-Nucleus-Id",
+						"value": "2416600817"
+					},
+					{
+						"key": "X-UT-SID",
+						"value": "0113ab81-04c6-40fa-a03c-a726744acfba"
+					}
+				],
 				"body": {},
 				"url": {
 					"raw": "https://utas.external.s2.fut.ea.com/ut/game/fifa18/phishing/question?_={{dateTimeNowUnix}}",
@@ -696,7 +714,16 @@
 			"name": "14) Validate answer",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Easw-Session-Data-Nucleus-Id",
+						"value": "2416600817"
+					},
+					{
+						"key": "X-UT-SID",
+						"value": "0113ab81-04c6-40fa-a03c-a726744acfba"
+					}
+				],
 				"body": {},
 				"url": {
 					"raw": "https://utas.external.s2.fut.ea.com/ut/game/fifa18/phishing/validate?answer={{secretHashedAnswer}}",
@@ -720,6 +747,74 @@
 						{
 							"key": "answer",
 							"value": "{{secretHashedAnswer}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Easw-Session-Data-Nucleus-Id",
+						"value": "2416600817"
+					},
+					{
+						"key": "X-UT-SID",
+						"value": "3bf5ff9d-3a3b-4306-a638-4442e3014b01"
+					},
+					{
+						"key": "X-UT-PHISHING-TOKEN",
+						"value": "2393946532996852386"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://utas.external.s2.fut.ea.com/ut/game/fifa18/transfermarket?start=0&num=36&type=player&maskedDefId=20801&_={{dateTimeNowUnix}}",
+					"protocol": "https",
+					"host": [
+						"utas",
+						"external",
+						"s2",
+						"fut",
+						"ea",
+						"com"
+					],
+					"path": [
+						"ut",
+						"game",
+						"fifa18",
+						"transfermarket"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"equals": true
+						},
+						{
+							"key": "num",
+							"value": "36",
+							"equals": true
+						},
+						{
+							"key": "type",
+							"value": "player",
+							"equals": true
+						},
+						{
+							"key": "maskedDefId",
+							"value": "20801",
+							"equals": true
+						},
+						{
+							"key": "_",
+							"value": "{{dateTimeNowUnix}}",
 							"equals": true
 						}
 					]

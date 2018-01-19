@@ -145,12 +145,12 @@ public class EAHashingAlgorithm{
     private int bitwiseRotate(int x, int c){
         int unsigned;
 
-        if(x < 0)
-            unsigned = x * -1;
-        else
-            unsigned = x;
+//        if(x < 0)
+//            unsigned = x * -1;
+//        else
+//            unsigned = x;
 
-        return (int)((x << c) | (unsigned >> (32 - c)));
+        return ((x << c) | (x >>> (32 - c)));
     }
 
     private int ff(int a, int b, int c, int d, int x, int s, int t)
@@ -177,6 +177,7 @@ public class EAHashingAlgorithm{
         return add(bitwiseRotate(add(add(a, q), add(x, t)), s), b);
     }
 
+    // PERFETTA OK, DA MODIFICARE FINALE
     private int[] checkSecurityAnswer(String securityAnswer){
         int numberOfBlocks = ((securityAnswer.length() + 8) >> 6) + 1;
         int[] blocks = new int[numberOfBlocks * 16];
@@ -196,8 +197,10 @@ public class EAHashingAlgorithm{
     private String numberToHex(int number){
         String result = "";
 
-        for (int j = 0; j <= 3; j++)
-            result += hexCharacters[(number >> (j * 8 + 4)) & 0x0F] + hexCharacters[(number >> (j * 8)) & 0x0F];
+        for (int j = 0; j <= 3; j++){
+            result += hexCharacters[(number >> (j * 8 + 4)) & 0x0F];
+            result += hexCharacters[(number >> (j * 8)) & 0x0F];
+        }
 
         return result;
     }

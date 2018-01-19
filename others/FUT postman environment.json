@@ -5,7 +5,7 @@
     {
       "enabled": true,
       "key": "execution",
-      "value": "e963269011s4",
+      "value": "e127543047s4",
       "type": "text"
     },
     {
@@ -17,31 +17,31 @@
     {
       "enabled": true,
       "key": "accessToken",
-      "value": "QVQxOjEuMDozLjA6NjA6aXB2dFUxbHFFVlZRTzB4QThTR21DMDZpbzFRMExOYklhc1I6ODE3Om8zNW84",
+      "value": "QVQwOjEuMDozLjA6NjA6WnN2YUM2aVFxWDZQR2dIZTRCcmRBTkdWYWluNjJpejltUGg6ODE3Om8zOGtv",
       "type": "text"
     },
     {
       "enabled": true,
       "key": "dateTimeNowUnix",
-      "value": "1516201870",
+      "value": "1516376940",
       "type": "text"
     },
     {
       "enabled": true,
       "key": "authCode",
-      "value": "\"auhduhaudhausdhauhsdauhsdua\"",
+      "value": "\"QUOQADEDhj34jWb6kRxoJ0kiNmtJ5UDd05tqRrGv\"",
       "type": "text"
     },
     {
       "enabled": true,
       "key": "nucleusPersonaId",
-      "value": "782236426342384823",
+      "value": "383734064",
       "type": "text"
     },
     {
       "enabled": true,
       "key": "fid",
-      "value": "RlMxOjEuMDoyLjA6c1JSaXIxb1k5YzdHa1BQZ3c0RGlSeTlmOm8zNW83",
+      "value": "RlMwOjEuMDoyLjA6YVZTN09Kc0pHd3BuZFJFNUxIN3hQSlZkOm8zOGtu",
       "type": "text"
     },
     {
@@ -137,12 +137,18 @@
     {
       "enabled": true,
       "key": "secretHashedAnswer",
-      "value": "28342364hhf3gf2g6hf",
+      "value": "722f86cd7eccccebdb38e367e897e9eb",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "easwNucleusId",
+      "value": "2416600817",
       "type": "text"
     }
   ],
-  "timestamp": 1516269027211,
+  "timestamp": 1516379196304,
   "_postman_variable_scope": "environment",
-  "_postman_exported_at": "2018-01-18T13:50:53.806Z",
+  "_postman_exported_at": "2018-01-19T16:30:43.871Z",
   "_postman_exported_using": "Postman/5.5.0"
 }

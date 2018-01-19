@@ -16,7 +16,7 @@ public class Main{
             e.printStackTrace();
         }
 
-        testEAHashingAlgorithm("prova");
+        testEAHashingAlgorithm("ricuttaro");
     }
 
     public static void testEAHashingAlgorithm(String securityAnswer){
