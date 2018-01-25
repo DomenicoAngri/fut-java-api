@@ -10,13 +10,13 @@ public class Main{
 
 
         try{
-            // login.testLogin("domenico.angri@gmail.com", "Domy35701786!", "", "");
+            login.testLogin("domenico.angri@gmail.com", "Domy35701786!", "588388", "");
         }
         catch(Exception e){
             e.printStackTrace();
         }
 
-        testEAHashingAlgorithm("ricuttaro");
+        // testEAHashingAlgorithm("ricuttaro");
     }
 
     public static void testEAHashingAlgorithm(String securityAnswer){

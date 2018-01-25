@@ -12,11 +12,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Login{
 
@@ -46,14 +44,28 @@ public class Login{
     }
 
     public void testLogin(String username, String password, String oneTimeCode, String securityAnswer) throws Exception{
-//        String urlWithFidParameter = getUriWithFidParam();
-//        System.out.println(urlWithFidParameter);
-//        String executionAndInitrefParameters = getExecutionAndInitrefParameters(urlWithFidParameter);
-//        System.out.println(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters);
-//        // String getFromPostLogin = postLogin(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters, username, password);
-//        String getFromPostLogin = postLoginApache(ServicesConstants.BASE_SIGNIN_URL + executionAndInitrefParameters, username, password);
-//        System.out.println(getFromPostLogin);
-//        fourthGet(ServicesConstants.BASE_SIGNIN_URL + getFromPostLogin);
+        String urlWithFidParameter = getUriWithFidParam();
+        System.out.println(urlWithFidParameter);
+
+        String uriWithExecutionAndInitref = getUriWithExecutionAndInitref(urlWithFidParameter);
+        System.out.println(uriWithExecutionAndInitref);
+
+        String uriPostLogin = postLogin(uriWithExecutionAndInitref, username, password);
+        System.out.println(uriPostLogin);
+
+        String uriFromWithEndParam = getWithEndParam(uriPostLogin);
+        System.out.println(uriFromWithEndParam);
+
+        String uriFromSetCodeType = postSetCodeType(uriFromWithEndParam);
+        System.out.println(uriFromSetCodeType);
+
+        String uriFromSendOneTimeCode = postSendOneTimeCode(uriFromSetCodeType, oneTimeCode);
+        System.out.println(uriFromSendOneTimeCode);
+
+        String accessToken = getAccessToken(uriFromSendOneTimeCode);
+        System.out.println("Access token = " + accessToken);
+
+        getPidData(accessToken);
     }
 
     public String getUriWithFidParam() throws Exception{
@@ -123,8 +135,6 @@ public class Login{
         setCookies(httpResponse);
 
         // TODO fare la verifica del login.
-        // String verifyLogin = EntityUtils.toString(response.getEntity());
-        // Document doc = Jsoup.parse(verifyLogin);
 
         return httpResponse.getHeaders("Location")[0].getValue();
     }
@@ -167,13 +177,26 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    // Maybe not usefull ??
-    public String getSigninWithFid(String uriFromOneTimeCode) throws Exception{
+    public String getAccessToken(String uriFromOneTimeCode) throws Exception{
         HttpGet httpGet = new HttpGet(uriFromOneTimeCode);
         setCommonHeaderParams(httpGet);
         HttpResponse httpResponse = httpClient.execute(httpGet);
         setCookies(httpResponse);
-        return httpResponse.getHeaders("Location")[0].getValue();
+
+        String[] uriParams = httpResponse.getHeaders("Location")[0].getValue().split("#")[1].split("&");
+        for(String uriParam : uriParams)
+            if(uriParam.contains("access_token"))
+                return uriParam.split("=")[1];
+
+        return CommonConstants.NULL_STRING;
+    }
+
+    public void getPidData(String accessToken)throws Exception{
+        HttpGet httpGet = new HttpGet(ServicesConstants.PID_DATA_URI);
+        setCommonHeaderParams(httpGet);
+        httpGet.setHeader("Authorization", "Bearer " + accessToken);
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+        setCookies(httpResponse);
     }
 
 
@@ -219,8 +242,13 @@ public class Login{
 
     private void setCookies(HttpResponse httpResponse){
         // TODO decidere se è giusto ritornare qualcoa da questi metodi void.
-        if(!httpResponse.getHeaders("Set-Cookie")[0].getValue().isEmpty())
-            cookies = httpResponse.getHeaders("Set-Cookie")[0].getValue();
+        try{
+            if(!httpResponse.getHeaders("Set-Cookie")[0].getValue().isEmpty())
+                cookies = httpResponse.getHeaders("Set-Cookie")[0].getValue();
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Non ci sono cookie da settare!");
+        }
     }
 
 }

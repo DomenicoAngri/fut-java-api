@@ -28,7 +28,9 @@ public class ServicesConstants{
                     "&display=web2/login" +
                     "&locale=" + LOCALE +
                     "&redirect_uri=" + BASE_REDIRECT_URI +
-                    "&scope=basic.identity+offline+signin"
+                    "&scope=basic.identity+offline+signin",
+
+            PID_DATA_URI = "https://gateway.ea.com/proxy/identity/pids/me";
 
 
 
