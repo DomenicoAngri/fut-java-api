@@ -13,8 +13,8 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class Login{
 
@@ -191,12 +191,33 @@ public class Login{
         return CommonConstants.NULL_STRING;
     }
 
-    public void getPidData(String accessToken)throws Exception{
+    public void getPidData(String accessToken) throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.PID_DATA_URI);
         setCommonHeaderParams(httpGet);
         httpGet.setHeader("Authorization", "Bearer " + accessToken);
         HttpResponse httpResponse = httpClient.execute(httpGet);
         setCookies(httpResponse);
+        // RISPOSTA DA RITORNARE JSON O XML
+    }
+
+    public void getShardsData() throws Exception{
+        HttpGet httpGet = new HttpGet(ServicesConstants.SHARDS_DATA_URI + Long.toString(getUnixDataTimeNow()));
+        setCommonHeaderParams(httpGet);
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+        setCookies(httpResponse);
+        // RISPOSTA DA RITORNARE JSON O XML
+    }
+
+    public void getAccountInfo() throws Exception{
+        HttpGet httpGet = new HttpGet(ServicesConstants.ACCOUNT_INFO_URI);
+        setCommonHeaderParams(httpGet);
+        httpGet.setHeader("Easw-Session-Data-Nucleus-Id", "");
+        httpGet.setHeader("X-UT-SID", "");
+        // httpGet.setHeader("_", Long.toString(getUnixDataTimeNow()));
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+
+        setCookies(httpResponse);
+        // RISPOSTA DA RITORNARE JSON O XML
     }
 
 
@@ -249,6 +270,10 @@ public class Login{
         catch(ArrayIndexOutOfBoundsException e){
             System.out.println("Non ci sono cookie da settare!");
         }
+    }
+
+    private long getUnixDataTimeNow(){
+        return new Date().getTime() / 1000L;
     }
 
 }
