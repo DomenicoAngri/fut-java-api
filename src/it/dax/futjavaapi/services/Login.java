@@ -1,7 +1,10 @@
 package it.dax.futjavaapi.services;
 
+import com.google.gson.Gson;
 import it.dax.futjavaapi.constants.CommonConstants;
 import it.dax.futjavaapi.constants.ServicesConstants;
+import it.dax.futjavaapi.models.Pid;
+import it.dax.futjavaapi.models.ShardInfo;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -12,15 +15,21 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class Login{
 
     private String cookies;
 
     private HttpClient httpClient;
+    private Gson gson;
+
+    private Pid pid;
+    private ShardInfo shardInfo;
 
     // TODO gestire situazione delle eccezioni nelle chiamate.
 
@@ -41,6 +50,10 @@ public class Login{
 
         // Creo il client e disabilito la redirect automatica.
         httpClient = HttpClientBuilder.create().disableRedirectHandling().build();
+        gson = new Gson();
+
+        pid = new Pid();
+        shardInfo = new ShardInfo();
     }
 
     public void testLogin(String username, String password, String oneTimeCode, String securityAnswer) throws Exception{
@@ -66,6 +79,8 @@ public class Login{
         System.out.println("Access token = " + accessToken);
 
         getPidData(accessToken);
+
+        getShardsData();
     }
 
     public String getUriWithFidParam() throws Exception{
@@ -195,17 +210,23 @@ public class Login{
         HttpGet httpGet = new HttpGet(ServicesConstants.PID_DATA_URI);
         setCommonHeaderParams(httpGet);
         httpGet.setHeader("Authorization", "Bearer " + accessToken);
+        httpGet.setHeader("Accept", "application/json");
+        httpGet.setHeader("Content-type", "application/json");
         HttpResponse httpResponse = httpClient.execute(httpGet);
         setCookies(httpResponse);
-        // RISPOSTA DA RITORNARE JSON O XML
+        pid.fillClass(gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Map.class));
     }
 
     public void getShardsData() throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.SHARDS_DATA_URI + Long.toString(getUnixDataTimeNow()));
         setCommonHeaderParams(httpGet);
+        httpGet.setHeader("Accept", "application/json");
+        httpGet.setHeader("Content-type", "application/json");
         HttpResponse httpResponse = httpClient.execute(httpGet);
         setCookies(httpResponse);
         // RISPOSTA DA RITORNARE JSON O XML
+        //String json = EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8);
+        shardInfo = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), ShardInfo.class);
     }
 
     public void getAccountInfo() throws Exception{
