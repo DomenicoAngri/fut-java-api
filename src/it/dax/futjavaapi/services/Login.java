@@ -3,8 +3,9 @@ package it.dax.futjavaapi.services;
 import com.google.gson.Gson;
 import it.dax.futjavaapi.constants.CommonConstants;
 import it.dax.futjavaapi.constants.ServicesConstants;
-import it.dax.futjavaapi.models.Pid;
+import it.dax.futjavaapi.models.PidInfo;
 import it.dax.futjavaapi.models.ShardInfo;
+import it.dax.futjavaapi.models.UserAccount;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,7 +20,6 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class Login{
 
@@ -28,8 +28,9 @@ public class Login{
     private HttpClient httpClient;
     private Gson gson;
 
-    private Pid pid;
+    private PidInfo pidInfo;
     private ShardInfo shardInfo;
+    private UserAccount userAccount;
 
     // TODO gestire situazione delle eccezioni nelle chiamate.
 
@@ -52,8 +53,9 @@ public class Login{
         httpClient = HttpClientBuilder.create().disableRedirectHandling().build();
         gson = new Gson();
 
-        pid = new Pid();
+        pidInfo = new PidInfo();
         shardInfo = new ShardInfo();
+        userAccount = new UserAccount();
     }
 
     public void testLogin(String username, String password, String oneTimeCode, String securityAnswer) throws Exception{
@@ -81,6 +83,8 @@ public class Login{
         getPidData(accessToken);
 
         getShardsData();
+
+        getAccountInfo();
     }
 
     public String getUriWithFidParam() throws Exception{
@@ -144,6 +148,8 @@ public class Login{
     public String getWithEndParam(String uriPostLocation) throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.BASE_SIGNIN_URI + uriPostLocation + "&_eventId=end");
         setCommonHeaderParams(httpGet);
+
+        // TODO, forse serve il settaggio cookie a tutti?
         httpGet.setHeader("Cookie", cookies);
 
         HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -214,7 +220,7 @@ public class Login{
         httpGet.setHeader("Content-type", "application/json");
         HttpResponse httpResponse = httpClient.execute(httpGet);
         setCookies(httpResponse);
-        pid.fillClass(gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Map.class));
+        pidInfo = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), PidInfo.class);
     }
 
     public void getShardsData() throws Exception{
@@ -224,21 +230,19 @@ public class Login{
         httpGet.setHeader("Content-type", "application/json");
         HttpResponse httpResponse = httpClient.execute(httpGet);
         setCookies(httpResponse);
-        // RISPOSTA DA RITORNARE JSON O XML
-        //String json = EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8);
         shardInfo = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), ShardInfo.class);
     }
 
     public void getAccountInfo() throws Exception{
-        HttpGet httpGet = new HttpGet(ServicesConstants.ACCOUNT_INFO_URI);
+        HttpGet httpGet = new HttpGet(ServicesConstants.getAccountInfoUri(ServicesConstants.getPreviouslyGameYear(), Long.toString(getUnixDataTimeNow())));
         setCommonHeaderParams(httpGet);
-        httpGet.setHeader("Easw-Session-Data-Nucleus-Id", "");
+        httpGet.setHeader("Accept", "application/json");
+        httpGet.setHeader("Content-type", "application/json");
+        httpGet.setHeader("Easw-Session-Data-Nucleus-Id", pidInfo.getPid().getPidId());
         httpGet.setHeader("X-UT-SID", "");
-        // httpGet.setHeader("_", Long.toString(getUnixDataTimeNow()));
         HttpResponse httpResponse = httpClient.execute(httpGet);
-
         setCookies(httpResponse);
-        // RISPOSTA DA RITORNARE JSON O XML
+        userAccount = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), UserAccount.class);
     }
 
 

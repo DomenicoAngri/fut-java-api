@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e67d3866-1dd6-4efc-aec2-cd8144760ae2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/it/dax/futjavaapi/constants/ServicesConstants.java" afterPath="$PROJECT_DIR$/src/it/dax/futjavaapi/constants/ServicesConstants.java" />
       <change beforePath="$PROJECT_DIR$/src/it/dax/futjavaapi/main/Main.java" afterPath="$PROJECT_DIR$/src/it/dax/futjavaapi/main/Main.java" />
+      <change beforePath="$PROJECT_DIR$/src/it/dax/futjavaapi/models/Pid.java" afterPath="$PROJECT_DIR$/src/it/dax/futjavaapi/models/Pid.java" />
+      <change beforePath="$PROJECT_DIR$/src/it/dax/futjavaapi/models/ShardInfo.java" afterPath="$PROJECT_DIR$/src/it/dax/futjavaapi/models/ShardInfo.java" />
       <change beforePath="$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java" afterPath="$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,189 +22,172 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <caret line="12" column="80" lean-forward="false" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Login.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
+            <state relative-caret-position="262">
+              <caret line="250" column="0" lean-forward="true" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11578#11579#0" expanded="true" />
-                <element signature="e#11629#11630#0" expanded="true" />
+                <element signature="e#11881#11882#0" expanded="true" />
+                <element signature="e#11932#11933#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pid.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Pid.java">
+      <file leaf-file-name="UserAccountInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserAccountInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="38" lean-forward="true" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+            <state relative-caret-position="102">
+              <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
               <folding>
-                <element signature="e#4534#4535#0" expanded="true" />
-                <element signature="e#4561#4562#0" expanded="true" />
-                <element signature="e#4757#4758#0" expanded="true" />
-                <element signature="e#4795#4796#0" expanded="true" />
-                <element signature="e#4857#4858#0" expanded="true" />
-                <element signature="e#4911#4912#0" expanded="true" />
-                <element signature="e#4954#4955#0" expanded="true" />
-                <element signature="e#4993#4994#0" expanded="true" />
-                <element signature="e#5057#5058#0" expanded="true" />
-                <element signature="e#5113#5114#0" expanded="true" />
-                <element signature="e#5145#5146#0" expanded="true" />
-                <element signature="e#5173#5174#0" expanded="true" />
-                <element signature="e#5215#5216#0" expanded="true" />
-                <element signature="e#5249#5250#0" expanded="true" />
-                <element signature="e#5281#5282#0" expanded="true" />
-                <element signature="e#5309#5310#0" expanded="true" />
-                <element signature="e#5351#5352#0" expanded="true" />
-                <element signature="e#5385#5386#0" expanded="true" />
-                <element signature="e#5423#5424#0" expanded="true" />
-                <element signature="e#5457#5458#0" expanded="true" />
-                <element signature="e#5511#5512#0" expanded="true" />
-                <element signature="e#5557#5558#0" expanded="true" />
-                <element signature="e#5592#5593#0" expanded="true" />
-                <element signature="e#5623#5624#0" expanded="true" />
-                <element signature="e#5671#5672#0" expanded="true" />
-                <element signature="e#5711#5712#0" expanded="true" />
-                <element signature="e#5741#5742#0" expanded="true" />
-                <element signature="e#5767#5768#0" expanded="true" />
-                <element signature="e#5805#5806#0" expanded="true" />
-                <element signature="e#5835#5836#0" expanded="true" />
-                <element signature="e#5869#5870#0" expanded="true" />
-                <element signature="e#5899#5900#0" expanded="true" />
-                <element signature="e#5945#5946#0" expanded="true" />
-                <element signature="e#5983#5984#0" expanded="true" />
-                <element signature="e#6018#6019#0" expanded="true" />
-                <element signature="e#6049#6050#0" expanded="true" />
-                <element signature="e#6097#6098#0" expanded="true" />
-                <element signature="e#6137#6138#0" expanded="true" />
-                <element signature="e#6170#6171#0" expanded="true" />
-                <element signature="e#6199#6200#0" expanded="true" />
-                <element signature="e#6243#6244#0" expanded="true" />
-                <element signature="e#6279#6280#0" expanded="true" />
-                <element signature="e#6312#6313#0" expanded="true" />
-                <element signature="e#6341#6342#0" expanded="true" />
-                <element signature="e#6385#6386#0" expanded="true" />
-                <element signature="e#6421#6422#0" expanded="true" />
-                <element signature="e#6458#6459#0" expanded="true" />
-                <element signature="e#6491#6492#0" expanded="true" />
-                <element signature="e#6543#6544#0" expanded="true" />
-                <element signature="e#6587#6588#0" expanded="true" />
-                <element signature="e#6624#6625#0" expanded="true" />
-                <element signature="e#6657#6658#0" expanded="true" />
-                <element signature="e#6709#6710#0" expanded="true" />
-                <element signature="e#6753#6754#0" expanded="true" />
-                <element signature="e#6793#6794#0" expanded="true" />
-                <element signature="e#6829#6830#0" expanded="true" />
-                <element signature="e#6887#6888#0" expanded="true" />
-                <element signature="e#6937#6938#0" expanded="true" />
-                <element signature="e#6979#6980#0" expanded="true" />
-                <element signature="e#7017#7018#0" expanded="true" />
-                <element signature="e#7079#7080#0" expanded="true" />
-                <element signature="e#7133#7134#0" expanded="true" />
-                <element signature="e#7171#7172#0" expanded="true" />
-                <element signature="e#7205#7206#0" expanded="true" />
-                <element signature="e#7259#7260#0" expanded="true" />
-                <element signature="e#7305#7306#0" expanded="true" />
-                <element signature="e#7343#7344#0" expanded="true" />
-                <element signature="e#7377#7378#0" expanded="true" />
-                <element signature="e#7431#7432#0" expanded="true" />
-                <element signature="e#7477#7478#0" expanded="true" />
-                <element signature="e#7516#7517#0" expanded="true" />
-                <element signature="e#7551#7552#0" expanded="true" />
-                <element signature="e#7607#7608#0" expanded="true" />
-                <element signature="e#7655#7656#0" expanded="true" />
-                <element signature="e#7694#7695#0" expanded="true" />
-                <element signature="e#7729#7730#0" expanded="true" />
-                <element signature="e#7785#7786#0" expanded="true" />
-                <element signature="e#7833#7834#0" expanded="true" />
-                <element signature="e#7878#7879#0" expanded="true" />
-                <element signature="e#7919#7920#0" expanded="true" />
-                <element signature="e#7987#7988#0" expanded="true" />
-                <element signature="e#8047#8048#0" expanded="true" />
-                <element signature="e#8094#8095#0" expanded="true" />
-                <element signature="e#8137#8138#0" expanded="true" />
-                <element signature="e#8309#8310#0" expanded="true" />
-                <element signature="e#8341#8342#0" expanded="true" />
-                <element signature="e#8391#8392#0" expanded="true" />
-                <element signature="e#8433#8434#0" expanded="true" />
-                <element signature="e#8477#8478#0" expanded="true" />
-                <element signature="e#8517#8518#0" expanded="true" />
-                <element signature="e#8583#8584#0" expanded="true" />
-                <element signature="e#8641#8642#0" expanded="true" />
-                <element signature="e#8680#8681#0" expanded="true" />
-                <element signature="e#8715#8716#0" expanded="true" />
-                <element signature="e#8771#8772#0" expanded="true" />
-                <element signature="e#8819#8820#0" expanded="true" />
-                <element signature="e#8857#8858#0" expanded="true" />
-                <element signature="e#8891#8892#0" expanded="true" />
-                <element signature="e#8945#8946#0" expanded="true" />
-                <element signature="e#8991#8992#0" expanded="true" />
-                <element signature="e#9042#9043#0" expanded="true" />
-                <element signature="e#9089#9090#0" expanded="true" />
-                <element signature="e#9293#9294#0" expanded="true" />
-                <element signature="e#9341#9342#0" expanded="true" />
-                <element signature="e#9541#9542#0" expanded="true" />
-                <element signature="e#9581#9582#0" expanded="true" />
-                <element signature="e#9647#9648#0" expanded="true" />
-                <element signature="e#9705#9706#0" expanded="true" />
+                <element signature="e#160#161#0" expanded="true" />
+                <element signature="e#191#192#0" expanded="true" />
+                <element signature="e#247#248#0" expanded="true" />
+                <element signature="e#287#288#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShardInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/ShardInfo.java">
+      <file leaf-file-name="Personas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Personas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+            <state relative-caret-position="84">
+              <caret line="54" column="49" lean-forward="false" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
               <folding>
-                <element signature="e#422#423#0" expanded="true" />
-                <element signature="e#452#453#0" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
-                <element signature="e#536#537#0" expanded="true" />
-                <element signature="e#581#582#0" expanded="true" />
-                <element signature="e#622#623#0" expanded="true" />
-                <element signature="e#690#691#0" expanded="true" />
-                <element signature="e#750#751#0" expanded="true" />
-                <element signature="e#791#792#0" expanded="true" />
-                <element signature="e#828#829#0" expanded="true" />
-                <element signature="e#888#889#0" expanded="true" />
-                <element signature="e#940#941#0" expanded="true" />
-                <element signature="e#1517#1518#0" expanded="true" />
-                <element signature="e#1549#1550#0" expanded="true" />
-                <element signature="e#1601#1602#0" expanded="true" />
-                <element signature="e#1643#1644#0" expanded="true" />
-                <element signature="e#1682#1683#0" expanded="true" />
-                <element signature="e#1715#1716#0" expanded="true" />
-                <element signature="e#1769#1770#0" expanded="true" />
-                <element signature="e#1813#1814#0" expanded="true" />
-                <element signature="e#1846#1847#0" expanded="true" />
-                <element signature="e#1873#1874#0" expanded="true" />
-                <element signature="e#1915#1916#0" expanded="true" />
-                <element signature="e#1947#1948#0" expanded="true" />
+                <element signature="e#344#345#0" expanded="true" />
+                <element signature="e#376#377#0" expanded="true" />
+                <element signature="e#426#427#0" expanded="true" />
+                <element signature="e#468#469#0" expanded="true" />
+                <element signature="e#506#507#0" expanded="true" />
+                <element signature="e#540#541#0" expanded="true" />
+                <element signature="e#594#595#0" expanded="true" />
+                <element signature="e#640#641#0" expanded="true" />
+                <element signature="e#680#681#0" expanded="true" />
+                <element signature="e#716#717#0" expanded="true" />
+                <element signature="e#774#775#0" expanded="true" />
+                <element signature="e#824#825#0" expanded="true" />
+                <element signature="e#856#857#0" expanded="true" />
+                <element signature="e#884#885#0" expanded="true" />
+                <element signature="e#926#927#0" expanded="true" />
+                <element signature="e#960#961#0" expanded="true" />
+                <element signature="e#996#997#0" expanded="true" />
+                <element signature="e#1028#1029#0" expanded="true" />
+                <element signature="e#1078#1079#0" expanded="true" />
+                <element signature="e#1120#1121#0" expanded="true" />
+                <element signature="e#1206#1207#0" expanded="true" />
+                <element signature="e#1274#1275#0" expanded="true" />
+                <element signature="e#1322#1323#0" expanded="true" />
+                <element signature="e#1358#1359#0" expanded="true" />
+                <element signature="e#1390#1391#0" expanded="true" />
+                <element signature="e#1440#1441#0" expanded="true" />
+                <element signature="e#1482#1483#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Platforms.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Platforms.java">
+      <file leaf-file-name="UserAccount.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+              <folding>
+                <element signature="e#156#157#0" expanded="true" />
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#265#266#0" expanded="true" />
+                <element signature="e#319#320#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserClubList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserClubList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding>
+                <element signature="e#369#370#0" expanded="true" />
+                <element signature="e#396#397#0" expanded="true" />
+                <element signature="e#436#437#0" expanded="true" />
+                <element signature="e#468#469#0" expanded="true" />
+                <element signature="e#502#503#0" expanded="true" />
+                <element signature="e#532#533#0" expanded="true" />
+                <element signature="e#578#579#0" expanded="true" />
+                <element signature="e#616#617#0" expanded="true" />
+                <element signature="e#649#650#0" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
+                <element signature="e#722#723#0" expanded="true" />
+                <element signature="e#758#759#0" expanded="true" />
+                <element signature="e#799#800#0" expanded="true" />
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#896#897#0" expanded="true" />
+                <element signature="e#948#949#0" expanded="true" />
+                <element signature="e#983#984#0" expanded="true" />
+                <element signature="e#1014#1015#0" expanded="true" />
+                <element signature="e#1062#1063#0" expanded="true" />
+                <element signature="e#1102#1103#0" expanded="true" />
+                <element signature="e#1137#1138#0" expanded="true" />
+                <element signature="e#1168#1169#0" expanded="true" />
+                <element signature="e#1216#1217#0" expanded="true" />
+                <element signature="e#1256#1257#0" expanded="true" />
+                <element signature="e#1291#1292#0" expanded="true" />
+                <element signature="e#1322#1323#0" expanded="true" />
+                <element signature="e#1370#1371#0" expanded="true" />
+                <element signature="e#1410#1411#0" expanded="true" />
+                <element signature="e#1448#1449#0" expanded="true" />
+                <element signature="e#1482#1483#0" expanded="true" />
+                <element signature="e#1536#1537#0" expanded="true" />
+                <element signature="e#1582#1583#0" expanded="true" />
+                <element signature="e#1623#1624#0" expanded="true" />
+                <element signature="e#1660#1661#0" expanded="true" />
+                <element signature="e#1720#1721#0" expanded="true" />
+                <element signature="e#1772#1773#0" expanded="true" />
+                <element signature="e#1806#1807#0" expanded="true" />
+                <element signature="e#1836#1837#0" expanded="true" />
+                <element signature="e#1882#1883#0" expanded="true" />
+                <element signature="e#1920#1921#0" expanded="true" />
+                <element signature="e#1973#1974#0" expanded="true" />
+                <element signature="e#2009#2010#0" expanded="true" />
+                <element signature="e#2080#2081#0" expanded="true" />
+                <element signature="e#2130#2131#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PidInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/PidInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+              <folding>
+                <element signature="e#130#131#0" expanded="true" />
+                <element signature="e#165#166#0" expanded="true" />
+                <element signature="e#195#196#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServicesConstants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/constants/ServicesConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="41" column="31" lean-forward="false" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -223,6 +209,8 @@
       <find>disa</find>
       <find>SCO</find>
       <find>SCOPE</find>
+      <find>shardInfo</find>
+      <find>getUnixDataTimeNow</find>
     </findStrings>
     <replaceStrings>
       <replace>r4</replace>
@@ -243,12 +231,18 @@
         <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/services/EAHashingAlgorithm.java" />
         <option value="$PROJECT_DIR$/lib/httpclient-4.5.4.jar!/org/apache/http/client/methods/HttpGet.class" />
         <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/constants/CommonConstants.java" />
-        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/constants/ServicesConstants.java" />
         <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/PidContainer.java" />
-        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/Pid.java" />
         <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/Platforms.java" />
         <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/ShardInfo.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/Shard.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/PidInfo.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserAccountInfo.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/Pid.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserClubList.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/constants/ServicesConstants.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserAccount.java" />
         <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java" />
+        <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/models/Personas.java" />
         <option value="$PROJECT_DIR$/src/it/dax/futjavaapi/main/Main.java" />
       </list>
     </option>
@@ -260,10 +254,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1066" />
+    <option name="x" value="2319" />
+    <option name="width" value="974" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -283,7 +276,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
@@ -336,6 +328,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -790,12 +783,12 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1673774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1673774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4432194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4432194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -873,22 +866,28 @@
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java</url>
-          <line>229</line>
+          <url>file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/ShardInfo.java</url>
+          <line>16</line>
           <properties />
-          <option name="timeStamp" value="87" />
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java</url>
-          <line>228</line>
+          <line>244</line>
           <properties />
-          <option name="timeStamp" value="88" />
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java</url>
+          <line>245</line>
+          <properties />
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="89" />
+      <option name="time" value="100" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -947,32 +946,7 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), ShardInfo.class)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>json</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>EntityUtils.toString(httpResponse.getEntity())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>httpResponse.getEntity()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>httpResponse</expression-string>
+        <expression-string>userAccount</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -982,60 +956,43 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
+        <expression-string>userAccountInfo</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>shardInfo</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Map.class).</expression-string>
+        <expression-string>pid</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>pid.getPidId()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>httpResponse.getEntity()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>shardInfopid</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>shardInfo.getShardInfo().get(0).getCustomdata1()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/HttpURLConnection.java" />
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/EAHashingAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#11578#11579#0" expanded="true" />
-            <element signature="e#11629#11630#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/HttpURLConnection.java" />
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#11578#11579#0" expanded="true" />
-            <element signature="e#11629#11630#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/EAHashingAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1067,8 +1024,8 @@
           <caret line="5" column="34" lean-forward="true" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11578#11579#0" expanded="true" />
-            <element signature="e#11629#11630#0" expanded="true" />
+            <element signature="e#11881#11882#0" expanded="true" />
+            <element signature="e#11932#11933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1096,8 +1053,8 @@
           <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11578#11579#0" expanded="true" />
-            <element signature="e#11629#11630#0" expanded="true" />
+            <element signature="e#11881#11882#0" expanded="true" />
+            <element signature="e#11932#11933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1274,177 +1231,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/constants/ServicesConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="77" lean-forward="false" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Platforms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/gson-2.2.2.jar!/com/google/gson/Gson.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="410" column="17" lean-forward="false" selection-start-line="410" selection-start-column="17" selection-end-line="410" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Pid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="38" lean-forward="true" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding>
-            <element signature="e#4534#4535#0" expanded="true" />
-            <element signature="e#4561#4562#0" expanded="true" />
-            <element signature="e#4757#4758#0" expanded="true" />
-            <element signature="e#4795#4796#0" expanded="true" />
-            <element signature="e#4857#4858#0" expanded="true" />
-            <element signature="e#4911#4912#0" expanded="true" />
-            <element signature="e#4954#4955#0" expanded="true" />
-            <element signature="e#4993#4994#0" expanded="true" />
-            <element signature="e#5057#5058#0" expanded="true" />
-            <element signature="e#5113#5114#0" expanded="true" />
-            <element signature="e#5145#5146#0" expanded="true" />
-            <element signature="e#5173#5174#0" expanded="true" />
-            <element signature="e#5215#5216#0" expanded="true" />
-            <element signature="e#5249#5250#0" expanded="true" />
-            <element signature="e#5281#5282#0" expanded="true" />
-            <element signature="e#5309#5310#0" expanded="true" />
-            <element signature="e#5351#5352#0" expanded="true" />
-            <element signature="e#5385#5386#0" expanded="true" />
-            <element signature="e#5423#5424#0" expanded="true" />
-            <element signature="e#5457#5458#0" expanded="true" />
-            <element signature="e#5511#5512#0" expanded="true" />
-            <element signature="e#5557#5558#0" expanded="true" />
-            <element signature="e#5592#5593#0" expanded="true" />
-            <element signature="e#5623#5624#0" expanded="true" />
-            <element signature="e#5671#5672#0" expanded="true" />
-            <element signature="e#5711#5712#0" expanded="true" />
-            <element signature="e#5741#5742#0" expanded="true" />
-            <element signature="e#5767#5768#0" expanded="true" />
-            <element signature="e#5805#5806#0" expanded="true" />
-            <element signature="e#5835#5836#0" expanded="true" />
-            <element signature="e#5869#5870#0" expanded="true" />
-            <element signature="e#5899#5900#0" expanded="true" />
-            <element signature="e#5945#5946#0" expanded="true" />
-            <element signature="e#5983#5984#0" expanded="true" />
-            <element signature="e#6018#6019#0" expanded="true" />
-            <element signature="e#6049#6050#0" expanded="true" />
-            <element signature="e#6097#6098#0" expanded="true" />
-            <element signature="e#6137#6138#0" expanded="true" />
-            <element signature="e#6170#6171#0" expanded="true" />
-            <element signature="e#6199#6200#0" expanded="true" />
-            <element signature="e#6243#6244#0" expanded="true" />
-            <element signature="e#6279#6280#0" expanded="true" />
-            <element signature="e#6312#6313#0" expanded="true" />
-            <element signature="e#6341#6342#0" expanded="true" />
-            <element signature="e#6385#6386#0" expanded="true" />
-            <element signature="e#6421#6422#0" expanded="true" />
-            <element signature="e#6458#6459#0" expanded="true" />
-            <element signature="e#6491#6492#0" expanded="true" />
-            <element signature="e#6543#6544#0" expanded="true" />
-            <element signature="e#6587#6588#0" expanded="true" />
-            <element signature="e#6624#6625#0" expanded="true" />
-            <element signature="e#6657#6658#0" expanded="true" />
-            <element signature="e#6709#6710#0" expanded="true" />
-            <element signature="e#6753#6754#0" expanded="true" />
-            <element signature="e#6793#6794#0" expanded="true" />
-            <element signature="e#6829#6830#0" expanded="true" />
-            <element signature="e#6887#6888#0" expanded="true" />
-            <element signature="e#6937#6938#0" expanded="true" />
-            <element signature="e#6979#6980#0" expanded="true" />
-            <element signature="e#7017#7018#0" expanded="true" />
-            <element signature="e#7079#7080#0" expanded="true" />
-            <element signature="e#7133#7134#0" expanded="true" />
-            <element signature="e#7171#7172#0" expanded="true" />
-            <element signature="e#7205#7206#0" expanded="true" />
-            <element signature="e#7259#7260#0" expanded="true" />
-            <element signature="e#7305#7306#0" expanded="true" />
-            <element signature="e#7343#7344#0" expanded="true" />
-            <element signature="e#7377#7378#0" expanded="true" />
-            <element signature="e#7431#7432#0" expanded="true" />
-            <element signature="e#7477#7478#0" expanded="true" />
-            <element signature="e#7516#7517#0" expanded="true" />
-            <element signature="e#7551#7552#0" expanded="true" />
-            <element signature="e#7607#7608#0" expanded="true" />
-            <element signature="e#7655#7656#0" expanded="true" />
-            <element signature="e#7694#7695#0" expanded="true" />
-            <element signature="e#7729#7730#0" expanded="true" />
-            <element signature="e#7785#7786#0" expanded="true" />
-            <element signature="e#7833#7834#0" expanded="true" />
-            <element signature="e#7878#7879#0" expanded="true" />
-            <element signature="e#7919#7920#0" expanded="true" />
-            <element signature="e#7987#7988#0" expanded="true" />
-            <element signature="e#8047#8048#0" expanded="true" />
-            <element signature="e#8094#8095#0" expanded="true" />
-            <element signature="e#8137#8138#0" expanded="true" />
-            <element signature="e#8309#8310#0" expanded="true" />
-            <element signature="e#8341#8342#0" expanded="true" />
-            <element signature="e#8391#8392#0" expanded="true" />
-            <element signature="e#8433#8434#0" expanded="true" />
-            <element signature="e#8477#8478#0" expanded="true" />
-            <element signature="e#8517#8518#0" expanded="true" />
-            <element signature="e#8583#8584#0" expanded="true" />
-            <element signature="e#8641#8642#0" expanded="true" />
-            <element signature="e#8680#8681#0" expanded="true" />
-            <element signature="e#8715#8716#0" expanded="true" />
-            <element signature="e#8771#8772#0" expanded="true" />
-            <element signature="e#8819#8820#0" expanded="true" />
-            <element signature="e#8857#8858#0" expanded="true" />
-            <element signature="e#8891#8892#0" expanded="true" />
-            <element signature="e#8945#8946#0" expanded="true" />
-            <element signature="e#8991#8992#0" expanded="true" />
-            <element signature="e#9042#9043#0" expanded="true" />
-            <element signature="e#9089#9090#0" expanded="true" />
-            <element signature="e#9293#9294#0" expanded="true" />
-            <element signature="e#9341#9342#0" expanded="true" />
-            <element signature="e#9541#9542#0" expanded="true" />
-            <element signature="e#9581#9582#0" expanded="true" />
-            <element signature="e#9647#9648#0" expanded="true" />
-            <element signature="e#9705#9706#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/ShardInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding>
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#690#691#0" expanded="true" />
-            <element signature="e#750#751#0" expanded="true" />
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#828#829#0" expanded="true" />
-            <element signature="e#888#889#0" expanded="true" />
-            <element signature="e#940#941#0" expanded="true" />
-            <element signature="e#1517#1518#0" expanded="true" />
-            <element signature="e#1549#1550#0" expanded="true" />
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#1643#1644#0" expanded="true" />
-            <element signature="e#1682#1683#0" expanded="true" />
-            <element signature="e#1715#1716#0" expanded="true" />
-            <element signature="e#1769#1770#0" expanded="true" />
-            <element signature="e#1813#1814#0" expanded="true" />
-            <element signature="e#1846#1847#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1915#1916#0" expanded="true" />
-            <element signature="e#1947#1948#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1452,9 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <element signature="e#2317#2318#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1462,21 +1249,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="e#1828#1829#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#11578#11579#0" expanded="true" />
-            <element signature="e#11629#11630#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1484,7 +1256,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1492,15 +1263,330 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
           <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Platforms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Shard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#319#320#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#519#520#0" expanded="true" />
+            <element signature="e#587#588#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#967#968#0" expanded="true" />
+            <element signature="e#1009#1010#0" expanded="true" />
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+            <element signature="e#1193#1194#0" expanded="true" />
+            <element signature="e#1230#1231#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
+            <element signature="e#1303#1304#0" expanded="true" />
+            <element signature="e#1335#1336#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Pid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding>
+            <element signature="e#730#731#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#830#831#0" expanded="true" />
+            <element signature="e#884#885#0" expanded="true" />
+            <element signature="e#927#928#0" expanded="true" />
+            <element signature="e#966#967#0" expanded="true" />
+            <element signature="e#1030#1031#0" expanded="true" />
+            <element signature="e#1086#1087#0" expanded="true" />
+            <element signature="e#1118#1119#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+            <element signature="e#1222#1223#0" expanded="true" />
+            <element signature="e#1254#1255#0" expanded="true" />
+            <element signature="e#1282#1283#0" expanded="true" />
+            <element signature="e#1324#1325#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+            <element signature="e#1396#1397#0" expanded="true" />
+            <element signature="e#1430#1431#0" expanded="true" />
+            <element signature="e#1484#1485#0" expanded="true" />
+            <element signature="e#1530#1531#0" expanded="true" />
+            <element signature="e#1565#1566#0" expanded="true" />
+            <element signature="e#1596#1597#0" expanded="true" />
+            <element signature="e#1644#1645#0" expanded="true" />
+            <element signature="e#1684#1685#0" expanded="true" />
+            <element signature="e#1714#1715#0" expanded="true" />
+            <element signature="e#1740#1741#0" expanded="true" />
+            <element signature="e#1778#1779#0" expanded="true" />
+            <element signature="e#1808#1809#0" expanded="true" />
+            <element signature="e#1842#1843#0" expanded="true" />
+            <element signature="e#1872#1873#0" expanded="true" />
+            <element signature="e#1918#1919#0" expanded="true" />
+            <element signature="e#1956#1957#0" expanded="true" />
+            <element signature="e#1991#1992#0" expanded="true" />
+            <element signature="e#2022#2023#0" expanded="true" />
+            <element signature="e#2070#2071#0" expanded="true" />
+            <element signature="e#2110#2111#0" expanded="true" />
+            <element signature="e#2143#2144#0" expanded="true" />
+            <element signature="e#2172#2173#0" expanded="true" />
+            <element signature="e#2216#2217#0" expanded="true" />
+            <element signature="e#2252#2253#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
+            <element signature="e#2314#2315#0" expanded="true" />
+            <element signature="e#2358#2359#0" expanded="true" />
+            <element signature="e#2394#2395#0" expanded="true" />
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2464#2465#0" expanded="true" />
+            <element signature="e#2516#2517#0" expanded="true" />
+            <element signature="e#2560#2561#0" expanded="true" />
+            <element signature="e#2597#2598#0" expanded="true" />
+            <element signature="e#2630#2631#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+            <element signature="e#2726#2727#0" expanded="true" />
+            <element signature="e#2766#2767#0" expanded="true" />
+            <element signature="e#2802#2803#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#2910#2911#0" expanded="true" />
+            <element signature="e#2952#2953#0" expanded="true" />
+            <element signature="e#2990#2991#0" expanded="true" />
+            <element signature="e#3052#3053#0" expanded="true" />
+            <element signature="e#3106#3107#0" expanded="true" />
+            <element signature="e#3144#3145#0" expanded="true" />
+            <element signature="e#3178#3179#0" expanded="true" />
+            <element signature="e#3232#3233#0" expanded="true" />
+            <element signature="e#3278#3279#0" expanded="true" />
+            <element signature="e#3316#3317#0" expanded="true" />
+            <element signature="e#3350#3351#0" expanded="true" />
+            <element signature="e#3404#3405#0" expanded="true" />
+            <element signature="e#3450#3451#0" expanded="true" />
+            <element signature="e#3489#3490#0" expanded="true" />
+            <element signature="e#3524#3525#0" expanded="true" />
+            <element signature="e#3580#3581#0" expanded="true" />
+            <element signature="e#3628#3629#0" expanded="true" />
+            <element signature="e#3667#3668#0" expanded="true" />
+            <element signature="e#3702#3703#0" expanded="true" />
+            <element signature="e#3758#3759#0" expanded="true" />
+            <element signature="e#3806#3807#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3892#3893#0" expanded="true" />
+            <element signature="e#3960#3961#0" expanded="true" />
+            <element signature="e#4020#4021#0" expanded="true" />
+            <element signature="e#4067#4068#0" expanded="true" />
+            <element signature="e#4110#4111#0" expanded="true" />
+            <element signature="e#4282#4283#0" expanded="true" />
+            <element signature="e#4314#4315#0" expanded="true" />
+            <element signature="e#4364#4365#0" expanded="true" />
+            <element signature="e#4406#4407#0" expanded="true" />
+            <element signature="e#4450#4451#0" expanded="true" />
+            <element signature="e#4490#4491#0" expanded="true" />
+            <element signature="e#4556#4557#0" expanded="true" />
+            <element signature="e#4614#4615#0" expanded="true" />
+            <element signature="e#4653#4654#0" expanded="true" />
+            <element signature="e#4688#4689#0" expanded="true" />
+            <element signature="e#4744#4745#0" expanded="true" />
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4830#4831#0" expanded="true" />
+            <element signature="e#4864#4865#0" expanded="true" />
+            <element signature="e#4918#4919#0" expanded="true" />
+            <element signature="e#4964#4965#0" expanded="true" />
+            <element signature="e#5015#5016#0" expanded="true" />
+            <element signature="e#5062#5063#0" expanded="true" />
+            <element signature="e#5266#5267#0" expanded="true" />
+            <element signature="e#5314#5315#0" expanded="true" />
+            <element signature="e#5514#5515#0" expanded="true" />
+            <element signature="e#5554#5555#0" expanded="true" />
+            <element signature="e#5620#5621#0" expanded="true" />
+            <element signature="e#5678#5679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/PidInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding>
+            <element signature="e#130#131#0" expanded="true" />
+            <element signature="e#165#166#0" expanded="true" />
+            <element signature="e#195#196#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/constants/ServicesConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="31" lean-forward="false" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/ShardInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#158#159#0" expanded="true" />
+            <element signature="e#190#191#0" expanded="true" />
+            <element signature="e#245#246#0" expanded="true" />
+            <element signature="e#287#288#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserAccountInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <folding>
+            <element signature="e#160#161#0" expanded="true" />
+            <element signature="e#191#192#0" expanded="true" />
+            <element signature="e#247#248#0" expanded="true" />
+            <element signature="e#287#288#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserClubList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
+            <element signature="e#649#650#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#722#723#0" expanded="true" />
+            <element signature="e#758#759#0" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#948#949#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1014#1015#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+            <element signature="e#1168#1169#0" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+            <element signature="e#1256#1257#0" expanded="true" />
+            <element signature="e#1291#1292#0" expanded="true" />
+            <element signature="e#1322#1323#0" expanded="true" />
+            <element signature="e#1370#1371#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
+            <element signature="e#1448#1449#0" expanded="true" />
+            <element signature="e#1482#1483#0" expanded="true" />
+            <element signature="e#1536#1537#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+            <element signature="e#1623#1624#0" expanded="true" />
+            <element signature="e#1660#1661#0" expanded="true" />
+            <element signature="e#1720#1721#0" expanded="true" />
+            <element signature="e#1772#1773#0" expanded="true" />
+            <element signature="e#1806#1807#0" expanded="true" />
+            <element signature="e#1836#1837#0" expanded="true" />
+            <element signature="e#1882#1883#0" expanded="true" />
+            <element signature="e#1920#1921#0" expanded="true" />
+            <element signature="e#1973#1974#0" expanded="true" />
+            <element signature="e#2009#2010#0" expanded="true" />
+            <element signature="e#2080#2081#0" expanded="true" />
+            <element signature="e#2130#2131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/UserAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding>
+            <element signature="e#156#157#0" expanded="true" />
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#265#266#0" expanded="true" />
+            <element signature="e#319#320#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/models/Personas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="54" column="49" lean-forward="false" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
+          <folding>
+            <element signature="e#344#345#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#426#427#0" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#594#595#0" expanded="true" />
+            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#716#717#0" expanded="true" />
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#824#825#0" expanded="true" />
+            <element signature="e#856#857#0" expanded="true" />
+            <element signature="e#884#885#0" expanded="true" />
+            <element signature="e#926#927#0" expanded="true" />
+            <element signature="e#960#961#0" expanded="true" />
+            <element signature="e#996#997#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1078#1079#0" expanded="true" />
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1274#1275#0" expanded="true" />
+            <element signature="e#1322#1323#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1482#1483#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <caret line="12" column="80" lean-forward="false" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="80" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/dax/futjavaapi/services/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="250" column="0" lean-forward="true" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#11881#11882#0" expanded="true" />
+            <element signature="e#11932#11933#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

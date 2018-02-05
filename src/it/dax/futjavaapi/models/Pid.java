@@ -1,109 +1,36 @@
 package it.dax.futjavaapi.models;
 
-import java.util.Map;
-
 public class Pid{
 
     private String
-            externalRefType,
-            externalRefValue,
-            pidId,
-            email,
-            emailStatus,
-            strength,
-            dob,
-            country,
-            language,
-            locale,
-            status,
-            reasonCode,
-            tosVersion,
-            parentalEmail,
-            thirdPartyOptin,
-            globalOptin,
-            dateCreated,
-            dateModified,
-            lastAuthDate,
-            registrationSource,
-            authenticationSource,
-            showEmail,
-            discoverableEmail,
-            anonymousPid,
-            underagePid,
-            defaultBillingAddressUri,
-            defaultShippingAddressUri,
-            passwordSignature;
-
-    public void fillClass(Map pidMap){
-        Map<String, String> pidMapEntry = (Map<String, String>) pidMap.get("pid");
-
-        for(Map.Entry<String, String> field : pidMapEntry.entrySet()){
-            if(field.getKey().equals("externalRefType"))
-                externalRefType = String.valueOf(field.getValue());
-            else if(field.getKey().equals("externalRefValue"))
-                externalRefValue = String.valueOf(field.getValue());
-            else if(field.getKey().equals("pidId"))
-                pidId = String.valueOf(field.getValue());
-            else if(field.getKey().equals("email"))
-                email = String.valueOf(field.getValue());
-            else if(field.getKey().equals("emailStatus"))
-                emailStatus = String.valueOf(field.getValue());
-            else if(field.getKey().equals("strength"))
-                strength = String.valueOf(field.getValue());
-            else if(field.getKey().equals("dob"))
-                dob = String.valueOf(field.getValue());
-            else if(field.getKey().equals("country"))
-                country = String.valueOf(field.getValue());
-            else if(field.getKey().equals("language"))
-                language = String.valueOf(field.getValue());
-            else if(field.getKey().equals("locale"))
-                locale = String.valueOf(field.getValue());
-            else if(field.getKey().equals("status"))
-                status = String.valueOf(field.getValue());
-            else if(field.getKey().equals("reasonCode"))
-                reasonCode = String.valueOf(field.getValue());
-            else if(field.getKey().equals("tosVersion"))
-                tosVersion = String.valueOf(field.getValue());
-            else if(field.getKey().equals("parentalEmail"))
-                parentalEmail = String.valueOf(field.getValue());
-            else if(field.getKey().equals("thirdPartyOptin"))
-                thirdPartyOptin = String.valueOf(field.getValue());
-            else if(field.getKey().equals("globalOptin"))
-                globalOptin = String.valueOf(field.getValue());
-            else if(field.getKey().equals("dateCreated"))
-                dateCreated = String.valueOf(field.getValue());
-            else if(field.getKey().equals("dateModified"))
-                dateModified = String.valueOf(field.getValue());
-            else if(field.getKey().equals("lastAuthDate"))
-                lastAuthDate = String.valueOf(field.getValue());
-            else if(field.getKey().equals("registrationSource"))
-                registrationSource = String.valueOf(field.getValue());
-            else if(field.getKey().equals("authenticationSource"))
-                authenticationSource = String.valueOf(field.getValue());
-            else if(field.getKey().equals("showEmail"))
-                showEmail = String.valueOf(field.getValue());
-            else if(field.getKey().equals("discoverableEmail"))
-                discoverableEmail = String.valueOf(field.getValue());
-            else if(field.getKey().equals("anonymousPid"))
-                anonymousPid = String.valueOf(field.getValue());
-            else if(field.getKey().equals("underagePid"))
-                underagePid = String.valueOf(field.getValue());
-            else if(field.getKey().equals("defaultBillingAddressUri"))
-                defaultBillingAddressUri = String.valueOf(field.getValue());
-            else if(field.getKey().equals("defaultShippingAddressUri"))
-                defaultShippingAddressUri = String.valueOf(field.getValue());
-            else if(field.getKey().equals("passwordSignature"))
-                passwordSignature = String.valueOf(field.getValue());
-        }
-    }
-
-    public String toString(){
-        return null;
-    }
-
-    /* **************************************************
-     * Setter and getter methods.
-     * ************************************************** */
+        externalRefType,
+        externalRefValue,
+        pidId,
+        email,
+        emailStatus,
+        strength,
+        dob,
+        country,
+        language,
+        locale,
+        status,
+        reasonCode,
+        tosVersion,
+        parentalEmail,
+        thirdPartyOptin,
+        globalOptin,
+        dateCreated,
+        dateModified,
+        lastAuthDate,
+        registrationSource,
+        authenticationSource,
+        showEmail,
+        discoverableEmail,
+        anonymousPid,
+        underagePid,
+        defaultBillingAddressUri,
+        defaultShippingAddressUri,
+        passwordSignature;
 
     public String getExternalRefType() {
         return externalRefType;

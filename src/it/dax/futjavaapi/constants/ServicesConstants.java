@@ -9,6 +9,9 @@ public class ServicesConstants{
             FIFA_WEB_CLIENT                             = "FIFA-18-WEBCLIENT",
             SKU                                         = "FUT18WEB",
 
+            CURRENT_YEAR                                = "2018",
+            CURRENT_SHORT_YEAR                          = "18",
+
             COUNTRY                                     = "IT",
             LOCALE                                      = "it_IT",
 
@@ -34,9 +37,17 @@ public class ServicesConstants{
 
             PID_DATA_URI                                = "https://gateway.ea.com/proxy/identity/pids/me",
 
-            SHARDS_DATA_URI                             = "https://utas.mob.v4.fut.ea.com/ut/shards/v2?_=",
+            SHARDS_DATA_URI                             = "https://utas.mob.v4.fut.ea.com/ut/shards/v2?_=";
 
-            ACCOUNT_INFO_URI                            = "https://utas.external.s2.fut.ea.com/ut/game/fifa18/user/accountinfo?filterConsoleLogin=true&sku=" + SKU + "&returningUserGameYear={{userGameYearLong}}&_={{dateTimeNowUnix}}";
+    public final static String getAccountInfoUri(String userGameYearLong, String dateTimeNowUnix){
+            return "https://utas.external.s2.fut.ea.com/ut/game/fifa18/user/accountinfo?filterConsoleLogin=true&sku=" + SKU + "&returningUserGameYear=" + userGameYearLong + "&_=" + dateTimeNowUnix;
+    }
+
+    public final static String getPreviouslyGameYear(){
+            return String.valueOf(Integer.parseInt(ServicesConstants.CURRENT_YEAR)-1);
+    }
+
+
 
 
 
