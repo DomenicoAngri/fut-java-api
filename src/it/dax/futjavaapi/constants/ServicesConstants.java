@@ -37,7 +37,11 @@ public class ServicesConstants{
 
             PID_DATA_URI                                = "https://gateway.ea.com/proxy/identity/pids/me",
 
-            SHARDS_DATA_URI                             = "https://utas.mob.v4.fut.ea.com/ut/shards/v2?_=";
+            SHARDS_DATA_URI                             = "https://utas.mob.v4.fut.ea.com/ut/shards/v2?_=",
+
+            AUTH_CODE_URI                               = BASE_AUTH_URI + "client_id=FOS-SERVER&redirect_uri=nucleus:rest&response_type=code&access_token=",
+
+            SID_CODE_URI                                = "https://utas.external.s2.fut.ea.com/ut/auth?sku_b=FFT18&";
 
     public final static String getAccountInfoUri(String userGameYearLong, String dateTimeNowUnix){
             return "https://utas.external.s2.fut.ea.com/ut/game/fifa18/user/accountinfo?filterConsoleLogin=true&sku=" + SKU + "&returningUserGameYear=" + userGameYearLong + "&_=" + dateTimeNowUnix;

@@ -14,12 +14,14 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class Login{
 
@@ -85,6 +87,9 @@ public class Login{
         getShardsData();
 
         getAccountInfo();
+
+        String authCode = getAuthorizationCode(accessToken);
+        System.out.println("Auth-code = " + authCode);
     }
 
     public String getUriWithFidParam() throws Exception{
@@ -243,6 +248,60 @@ public class Login{
         HttpResponse httpResponse = httpClient.execute(httpGet);
         setCookies(httpResponse);
         userAccount = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), UserAccount.class);
+    }
+
+    public String getAuthorizationCode(String accessToken) throws Exception{
+        HttpGet httpGet = new HttpGet(ServicesConstants.AUTH_CODE_URI + accessToken);
+        setCommonHeaderParams(httpGet);
+        httpGet.setHeader("Accept", "application/json");
+        httpGet.setHeader("Content-type", "application/json");
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+        setCookies(httpResponse);
+        Map<String, String> authCodeMap = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Map.class);
+        return authCodeMap.get("code");
+    }
+
+    public String postGetSidCode() throws Exception{
+        HttpPost httpPost = new HttpPost(ServicesConstants.SID_CODE_URI + Long.toString(getUnixDataTimeNow()));
+        setCommonHeaderParams(httpPost);
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Content-type", "application/json");
+
+        /**
+
+         {
+         "isReadOnly": false,
+         "sku": "FUT18WEB",
+         "clientVersion": 1,
+         "locale": "it-IT",
+         "method": "authcode",
+         "priorityLevel": 4,
+         "identification": {
+         "authCode": {{authCode}},
+         "redirectUrl": "nucleus:rest"
+         },
+         "nucleusPersonaId": {{nucleusPersonaId}},
+         "gameSku": "FFA18PS4"
+         }
+
+         */
+
+        String jsonEntity = "";
+        StringEntity stringEntity = new StringEntity(jsonEntity);
+        httpPost.setEntity(stringEntity);
+
+        HttpResponse httpResponse = httpClient.execute(httpPost);
+        setCookies(httpResponse);
+
+
+        // return httpResponse.getHeaders("Location")[0].getValue();
+
+
+
+
+
+
+        return "";
     }
 
 
