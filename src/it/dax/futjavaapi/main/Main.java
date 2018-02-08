@@ -10,7 +10,7 @@ public class Main{
 
 
         try{
-            login.testLogin("domenico.angri@gmail.com", "Domy35701786!", "672536", "");
+            login.testLogin("", "", "", "", "");
         }
         catch(Exception e){
             e.printStackTrace();

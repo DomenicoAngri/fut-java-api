@@ -3,9 +3,7 @@ package it.dax.futjavaapi.services;
 import com.google.gson.Gson;
 import it.dax.futjavaapi.constants.CommonConstants;
 import it.dax.futjavaapi.constants.ServicesConstants;
-import it.dax.futjavaapi.models.PidInfo;
-import it.dax.futjavaapi.models.ShardInfo;
-import it.dax.futjavaapi.models.UserAccount;
+import it.dax.futjavaapi.models.*;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -18,10 +16,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class Login{
 
@@ -33,19 +29,16 @@ public class Login{
     private PidInfo pidInfo;
     private ShardInfo shardInfo;
     private UserAccount userAccount;
+    private Sid sid;
+    private Question question;
+    private Answer answer;
+
+    private EAHashingAlgorithm eaHashingAlgorithm;
+
+    // TODO DA GESTIRE!!! SOLO PER TEST!!
+    String oneTimeInsertedCode;
 
     // TODO gestire situazione delle eccezioni nelle chiamate.
-
-    public boolean login(String username, String password, String temporaneyToken, String securityAnswer){
-        // 1. Get fid
-        // 2. Get execution & initref
-        // 3. Login post
-        // 4. Get with end parameter
-        // 5. Security temp code
-        // 6. Security answer
-
-        return true;
-    }
 
     public Login(){
         // Inizializzo la stringa dei cookie vuota.
@@ -58,9 +51,16 @@ public class Login{
         pidInfo = new PidInfo();
         shardInfo = new ShardInfo();
         userAccount = new UserAccount();
+        sid = new Sid();
+        question = new Question();
+        answer = new Answer();
+
+        eaHashingAlgorithm = new EAHashingAlgorithm();
+
+        oneTimeInsertedCode = "";
     }
 
-    public void testLogin(String username, String password, String oneTimeCode, String securityAnswer) throws Exception{
+    public void testLogin(String username, String password, String oneTimeCode, String securityAnswer, String platform) throws Exception{
         String urlWithFidParameter = getUriWithFidParam();
         System.out.println(urlWithFidParameter);
 
@@ -73,10 +73,12 @@ public class Login{
         String uriFromWithEndParam = getWithEndParam(uriPostLogin);
         System.out.println(uriFromWithEndParam);
 
-        String uriFromSetCodeType = postSetCodeType(uriFromWithEndParam);
+        String uriFromSetCodeType = postSetCodeType(uriFromWithEndParam, oneTimeCode.isEmpty() ? true : false);
+        if(uriFromSetCodeType.equals("EXIT"))
+            return;
         System.out.println(uriFromSetCodeType);
 
-        String uriFromSendOneTimeCode = postSendOneTimeCode(uriFromSetCodeType, oneTimeCode);
+        String uriFromSendOneTimeCode = postSendOneTimeCode(uriFromSetCodeType, oneTimeCode.isEmpty() ? oneTimeInsertedCode : oneTimeCode);
         System.out.println(uriFromSendOneTimeCode);
 
         String accessToken = getAccessToken(uriFromSendOneTimeCode);
@@ -90,6 +92,24 @@ public class Login{
 
         String authCode = getAuthorizationCode(accessToken);
         System.out.println("Auth-code = " + authCode);
+
+        postGetSidCode(authCode, platform);
+
+        getValidateQuestion();
+
+        postValidateAnswer(securityAnswer);
+
+        String club = "";
+        for(UserClubList userClubList : userAccount.getUserAccountInfo().getPersonas().get(0).getUserClubList())
+            if(userClubList.getYear().equals("2018"))
+                club += userClubList.getClubName();
+
+        if(answer.getReason().equals("Answer is correct.")){
+            System.out.println();
+            System.out.println("Benvenuto " + userAccount.getUserAccountInfo().getPersonas().get(0).getPersonaName() + "!");
+            System.out.println("La tua squadra si chiama: " + club + ".");
+            System.out.println("Sei pronto a dominare il mercato di FUT...?!");
+        }
     }
 
     public String getUriWithFidParam() throws Exception{
@@ -165,19 +185,56 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    public String postSetCodeType(String uriFromEndParam) throws Exception{
+    public String postSetCodeType(String uriFromEndParam, boolean verifyMod) throws Exception{
         HttpPost httpPost = new HttpPost(ServicesConstants.BASE_SIGNIN_URI + uriFromEndParam);
 
         setCommonHeaderParams(httpPost);
         httpPost.setHeader("Content-Type", ServicesConstants.URL_ENCODED_FORM);
 
+        // TODO da gestire
+
+        String codeType = "APP";
+        Scanner sc = new Scanner(System.in);
+        int choice = 0;
+
+        if(verifyMod){
+            do{
+                System.out.println();
+                System.out.println("Autenticazione a due fattori.");
+                System.out.println("1) Invia il codice per email.");
+                System.out.println("2) Invia il codice per SMS.");
+                System.out.println("3) Esci.");
+                choice = sc.nextInt();
+            }
+            while(choice < 1 || choice > 3);
+
+            switch(choice){
+                case 1:
+                    codeType = "EMAIL";
+                    break;
+                case 2:
+                    codeType = "SMS";
+                    break;
+                case 3:
+                    System.out.println();
+                    System.out.println("Login annullato.");
+                    return "EXIT";
+            }
+        }
+
         List<NameValuePair> uriParams = new ArrayList<>();
-        uriParams.add(new BasicNameValuePair("codeType", "APP"));
+        uriParams.add(new BasicNameValuePair("codeType", codeType));
         uriParams.add(new BasicNameValuePair("_eventId", "submit"));
         httpPost.setEntity(new UrlEncodedFormEntity(uriParams, Consts.UTF_8));
 
         HttpResponse httpResponse = httpClient.execute(httpPost);
         setCookies(httpResponse);
+
+        if(verifyMod){
+            System.out.println();
+            System.out.println("Inserisci il codice che hai ricevuto: ");
+            oneTimeInsertedCode = sc.next();
+        }
 
         return httpResponse.getHeaders("Location")[0].getValue();
     }
@@ -261,78 +318,45 @@ public class Login{
         return authCodeMap.get("code");
     }
 
-    public String postGetSidCode() throws Exception{
+    public void postGetSidCode(String authCode, String platform) throws Exception{
         HttpPost httpPost = new HttpPost(ServicesConstants.SID_CODE_URI + Long.toString(getUnixDataTimeNow()));
+
         setCommonHeaderParams(httpPost);
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
 
-        /**
-
-         {
-         "isReadOnly": false,
-         "sku": "FUT18WEB",
-         "clientVersion": 1,
-         "locale": "it-IT",
-         "method": "authcode",
-         "priorityLevel": 4,
-         "identification": {
-         "authCode": {{authCode}},
-         "redirectUrl": "nucleus:rest"
-         },
-         "nucleusPersonaId": {{nucleusPersonaId}},
-         "gameSku": "FFA18PS4"
-         }
-
-         */
-
-        String jsonEntity = "";
-        StringEntity stringEntity = new StringEntity(jsonEntity);
+        StringEntity stringEntity = new StringEntity(ServicesConstants.getJsonSidCode(authCode, userAccount.getUserAccountInfo().getPersonas().get(0).getPersonaId(), ServicesConstants.getGameSkuFromPlatform(platform)));
         httpPost.setEntity(stringEntity);
 
         HttpResponse httpResponse = httpClient.execute(httpPost);
         setCookies(httpResponse);
 
-
-        // return httpResponse.getHeaders("Location")[0].getValue();
-
-
-
-
-
-
-        return "";
+        sid = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Sid.class);
     }
 
+    public void getValidateQuestion() throws Exception{
+        HttpGet httpGet = new HttpGet(ServicesConstants.VALIDATE_QUESTION_URI + Long.toString(getUnixDataTimeNow()));
+        setCommonHeaderParams(httpGet);
+        httpGet.setHeader("Accept", "application/json");
+        httpGet.setHeader("Content-type", "application/json");
+        httpGet.setHeader("Easw-Session-Data-Nucleus-Id", pidInfo.getPid().getPidId());
+        httpGet.setHeader("X-UT-SID", sid.getSid());
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+        setCookies(httpResponse);
+        question = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Question.class);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void postValidateAnswer(String securityAnswer) throws Exception{
+        HttpPost httpPost = new HttpPost(ServicesConstants.VALIDATE_ANSWER_URI + eaHashingAlgorithm.hash(securityAnswer));
+        setCommonHeaderParams(httpPost);
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Content-type", "application/json");
+        httpPost.setHeader("Easw-Session-Data-Nucleus-Id", pidInfo.getPid().getPidId());
+        httpPost.setHeader("X-UT-SID", sid.getSid());
+        HttpResponse httpResponse = httpClient.execute(httpPost);
+        setCookies(httpResponse);
+        answer = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Answer.class);
+    }
 
     private void setCommonHeaderParams(HttpRequestBase httpRequestBase) {
         httpRequestBase.setHeader("User-Agent", ServicesConstants.USER_AGENT);
