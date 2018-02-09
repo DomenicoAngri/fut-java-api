@@ -16,10 +16,16 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
+import java.io.FileInputStream;
 import java.util.*;
 
 public class Login{
+
+    private Logger logger = Logger.getLogger(Login.class);
 
     private String cookies;
 
@@ -41,6 +47,8 @@ public class Login{
     // TODO gestire situazione delle eccezioni nelle chiamate.
 
     public Login(){
+        // igure("src\\it\\dax\\futjavaapi\\properties\\log4j.properties");
+
         // Inizializzo la stringa dei cookie vuota.
         cookies = "";
 
@@ -61,6 +69,12 @@ public class Login{
     }
 
     public void testLogin(String username, String password, String oneTimeCode, String securityAnswer, String platform) throws Exception{
+        logger.debug("Ciao sono nel test login.");
+        logger.info("Ciao sono nel test login.");
+        logger.warn("Ciao sono nel test login.");
+        logger.error("Ciao sono nel test login.");
+        logger.fatal("Ciao sono nel test login.");
+
         String urlWithFidParameter = getUriWithFidParam();
         System.out.println(urlWithFidParameter);
 

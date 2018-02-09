@@ -10,6 +10,14 @@
     <orderEntry type="library" name="commons-codec-1.10" level="application" />
     <orderEntry type="library" name="gson-2.2.2" level="application" />
     <orderEntry type="library" name="jsoup-1.11.2" level="application" />
-    <orderEntry type="library" name="lib1" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/log4j-1.2.17.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
