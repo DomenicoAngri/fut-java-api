@@ -16,16 +16,16 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
-import java.io.FileInputStream;
-import java.util.*;
+public final class LoginService {
 
-public class Login{
-
-    private Logger logger = Logger.getLogger(Login.class);
+    private Logger logger = Logger.getLogger(LoginService.class);
 
     private String cookies;
 
@@ -46,8 +46,7 @@ public class Login{
 
     // TODO gestire situazione delle eccezioni nelle chiamate.
 
-    public Login(){
-        // igure("src\\it\\dax\\futjavaapi\\properties\\log4j.properties");
+    public LoginService(){
 
         // Inizializzo la stringa dei cookie vuota.
         cookies = "";
@@ -68,24 +67,24 @@ public class Login{
         oneTimeInsertedCode = "";
     }
 
-    public void testLogin(String username, String password, String oneTimeCode, String securityAnswer, String platform) throws Exception{
+    public void login(String username, String password, String oneTimeCode, String securityAnswer, Platforms platform) throws Exception{
         logger.debug("Ciao sono nel test login.");
         logger.info("Ciao sono nel test login.");
         logger.warn("Ciao sono nel test login.");
         logger.error("Ciao sono nel test login.");
         logger.fatal("Ciao sono nel test login.");
 
-        String urlWithFidParameter = getUriWithFidParam();
-        System.out.println(urlWithFidParameter);
+        String uriWithFidParameter = getUriWithFidParam();
+        logger.debug(uriWithFidParameter);
 
-        String uriWithExecutionAndInitref = getUriWithExecutionAndInitref(urlWithFidParameter);
-        System.out.println(uriWithExecutionAndInitref);
+        String uriWithExecutionAndInitref = getUriWithExecutionAndInitref(uriWithFidParameter);
+        logger.debug(uriWithExecutionAndInitref);
 
         String uriPostLogin = postLogin(uriWithExecutionAndInitref, username, password);
-        System.out.println(uriPostLogin);
+        logger.debug(uriPostLogin);
 
         String uriFromWithEndParam = getWithEndParam(uriPostLogin);
-        System.out.println(uriFromWithEndParam);
+        logger.debug(uriFromWithEndParam);
 
         String uriFromSetCodeType = postSetCodeType(uriFromWithEndParam, oneTimeCode.isEmpty() ? true : false);
         if(uriFromSetCodeType.equals("EXIT"))
@@ -126,7 +125,7 @@ public class Login{
         }
     }
 
-    public String getUriWithFidParam() throws Exception{
+    private String getUriWithFidParam() throws Exception{
         // URI della richiesta (ServicesConstants.FID_PARAM_URI).
         // https://accounts.ea.com/connect/auth?prompt=login&accessToken=null&client_id=FIFA-18-WEBCLIENT&response_type=token&display=web2/login&locale=it_IT&redirect_uri=https://www.easports.com/it/fifa/ultimate-team/web-app/auth.html&scope=basic.identity+offline+signin
 
@@ -147,7 +146,7 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    public String getUriWithExecutionAndInitref(String uriWithFidParam) throws Exception{
+    private String getUriWithExecutionAndInitref(String uriWithFidParam) throws Exception{
         HttpGet httpGet = new HttpGet(uriWithFidParam);
         setCommonHeaderParams(httpGet);
         HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -155,7 +154,7 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    public String postLogin(String uriWithExecutionAndInitref, String username, String password) throws Exception{
+    private String postLogin(String uriWithExecutionAndInitref, String username, String password) throws Exception{
         HttpPost httpPost = new HttpPost(ServicesConstants.BASE_SIGNIN_URI + uriWithExecutionAndInitref);
 
         setCommonHeaderParams(httpPost);
@@ -184,7 +183,7 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    public String getWithEndParam(String uriPostLocation) throws Exception{
+    private String getWithEndParam(String uriPostLocation) throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.BASE_SIGNIN_URI + uriPostLocation + "&_eventId=end");
         setCommonHeaderParams(httpGet);
 
@@ -199,7 +198,7 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    public String postSetCodeType(String uriFromEndParam, boolean verifyMod) throws Exception{
+    private String postSetCodeType(String uriFromEndParam, boolean verifyMod) throws Exception{
         HttpPost httpPost = new HttpPost(ServicesConstants.BASE_SIGNIN_URI + uriFromEndParam);
 
         setCommonHeaderParams(httpPost);
@@ -231,7 +230,7 @@ public class Login{
                     break;
                 case 3:
                     System.out.println();
-                    System.out.println("Login annullato.");
+                    System.out.println("LoginService annullato.");
                     return "EXIT";
             }
         }
@@ -253,7 +252,7 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    public String postSendOneTimeCode(String uriFromCodeType, String oneTimeCode) throws Exception{
+    private String postSendOneTimeCode(String uriFromCodeType, String oneTimeCode) throws Exception{
         HttpPost httpPost = new HttpPost(ServicesConstants.BASE_SIGNIN_URI + uriFromCodeType);
 
         setCommonHeaderParams(httpPost);
@@ -274,7 +273,7 @@ public class Login{
         return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    public String getAccessToken(String uriFromOneTimeCode) throws Exception{
+    private String getAccessToken(String uriFromOneTimeCode) throws Exception{
         HttpGet httpGet = new HttpGet(uriFromOneTimeCode);
         setCommonHeaderParams(httpGet);
         HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -288,7 +287,7 @@ public class Login{
         return CommonConstants.NULL_STRING;
     }
 
-    public void getPidData(String accessToken) throws Exception{
+    private void getPidData(String accessToken) throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.PID_DATA_URI);
         setCommonHeaderParams(httpGet);
         httpGet.setHeader("Authorization", "Bearer " + accessToken);
@@ -299,7 +298,7 @@ public class Login{
         pidInfo = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), PidInfo.class);
     }
 
-    public void getShardsData() throws Exception{
+    private void getShardsData() throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.SHARDS_DATA_URI + Long.toString(getUnixDataTimeNow()));
         setCommonHeaderParams(httpGet);
         httpGet.setHeader("Accept", "application/json");
@@ -309,7 +308,7 @@ public class Login{
         shardInfo = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), ShardInfo.class);
     }
 
-    public void getAccountInfo() throws Exception{
+    private void getAccountInfo() throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.getAccountInfoUri(ServicesConstants.getPreviouslyGameYear(), Long.toString(getUnixDataTimeNow())));
         setCommonHeaderParams(httpGet);
         httpGet.setHeader("Accept", "application/json");
@@ -321,7 +320,7 @@ public class Login{
         userAccount = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), UserAccount.class);
     }
 
-    public String getAuthorizationCode(String accessToken) throws Exception{
+    private String getAuthorizationCode(String accessToken) throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.AUTH_CODE_URI + accessToken);
         setCommonHeaderParams(httpGet);
         httpGet.setHeader("Accept", "application/json");
@@ -332,7 +331,7 @@ public class Login{
         return authCodeMap.get("code");
     }
 
-    public void postGetSidCode(String authCode, String platform) throws Exception{
+    private void postGetSidCode(String authCode, String platform) throws Exception{
         HttpPost httpPost = new HttpPost(ServicesConstants.SID_CODE_URI + Long.toString(getUnixDataTimeNow()));
 
         setCommonHeaderParams(httpPost);
@@ -348,7 +347,7 @@ public class Login{
         sid = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Sid.class);
     }
 
-    public void getValidateQuestion() throws Exception{
+    private void getValidateQuestion() throws Exception{
         HttpGet httpGet = new HttpGet(ServicesConstants.VALIDATE_QUESTION_URI + Long.toString(getUnixDataTimeNow()));
         setCommonHeaderParams(httpGet);
         httpGet.setHeader("Accept", "application/json");
@@ -360,7 +359,7 @@ public class Login{
         question = gson.fromJson(EntityUtils.toString(httpResponse.getEntity(), Consts.UTF_8), Question.class);
     }
 
-    public void postValidateAnswer(String securityAnswer) throws Exception{
+    private void postValidateAnswer(String securityAnswer) throws Exception{
         HttpPost httpPost = new HttpPost(ServicesConstants.VALIDATE_ANSWER_URI + eaHashingAlgorithm.hash(securityAnswer));
         setCommonHeaderParams(httpPost);
         httpPost.setHeader("Accept", "application/json");

@@ -1,16 +1,17 @@
 package it.dax.futjavaapi.main;
 
 import it.dax.futjavaapi.services.EAHashingAlgorithm;
-import it.dax.futjavaapi.services.Login;
+import it.dax.futjavaapi.services.LoginService;
 
 public class Main{
 
     public static void main(String args[]){
-        Login login = new Login();
+        LoginService loginService = new LoginService();
 
+        it.dax.futjavaapi.models.UserClubList userClubList;
 
         try{
-            login.testLogin("", "", "", "", "");
+            loginService.testLogin("", "", "", "", "");
         }
         catch(Exception e){
             e.printStackTrace();
