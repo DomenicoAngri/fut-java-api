@@ -11,7 +11,8 @@ public class Main{
         it.dax.futjavaapi.models.UserClubList userClubList;
 
         try{
-            loginService.testLogin("", "", "", "", "");
+            //loginService.testLogin("", "", "", "", "");
+            loginService.temporaryTest();
         }
         catch(Exception e){
             e.printStackTrace();
