@@ -1,22 +1,29 @@
 package it.dax.futjavaapi.main;
 
+import it.dax.futjavaapi.exceptions.EAGeneralErrorException;
 import it.dax.futjavaapi.services.EAHashingAlgorithm;
 import it.dax.futjavaapi.services.LoginService;
+import org.apache.log4j.Logger;
 
 public class Main{
+
+    private static Logger logger = Logger.getLogger(Main.class);
 
     public static void main(String args[]){
         LoginService loginService = new LoginService();
 
         it.dax.futjavaapi.models.UserClubList userClubList;
 
-        try{
-            //loginService.testLogin("", "", "", "", "");
-            loginService.temporaryTest();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        logger.error("Bad request to server.");
+        throw new EAGeneralErrorException("Ciao!");
+
+//        try{
+//            //loginService.testLogin("", "", "", "", "");
+//            loginService.temporaryTest();
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//        }
 
         // testEAHashingAlgorithm("ricuttaro");
     }
