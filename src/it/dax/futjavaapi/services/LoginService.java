@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public final class LoginService {
+public final class LoginService{
 
     private Logger logger = Logger.getLogger(LoginService.class);
 

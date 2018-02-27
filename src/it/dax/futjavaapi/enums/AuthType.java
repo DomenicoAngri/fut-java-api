@@ -7,14 +7,14 @@ public enum AuthType{
     EMAIL("EMAIL"),
     UNKNOWN("");
 
-    private String value;
+    private String platform;
 
-    AuthType(String value){
-        this.value = value;
+    AuthType(String platform){
+        this.platform = platform;
     }
 
-    public String getValue(){
-        return value;
+    public String getPlatform(){
+        return platform;
     }
 
 }

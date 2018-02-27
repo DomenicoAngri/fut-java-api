@@ -6,4 +6,8 @@ public class EAGetInformationsFailedException extends RuntimeException{
         super(message);
     }
 
+    public EAGetInformationsFailedException(String message, Throwable cause){
+        super(message, cause);
+    }
+
 }

@@ -1,5 +1,6 @@
 package it.dax.futjavaapi.main;
 
+import it.dax.futjavaapi.enums.ErrorCodes;
 import it.dax.futjavaapi.exceptions.EAGeneralErrorException;
 import it.dax.futjavaapi.services.EAHashingAlgorithm;
 import it.dax.futjavaapi.services.LoginService;
@@ -14,8 +15,7 @@ public class Main{
 
         it.dax.futjavaapi.models.UserClubList userClubList;
 
-        logger.error("Bad request to server.");
-        throw new EAGeneralErrorException("Ciao!");
+        throw new EAGeneralErrorException(EAGeneralErrorException.provaErrorMessage_001);
 
 //        try{
 //            //loginService.testLogin("", "", "", "", "");
