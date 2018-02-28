@@ -1,10 +1,10 @@
 package it.dax.futjavaapi.exceptions;
 
-import it.dax.futjavaapi.enums.ErrorCodes;
+import it.dax.futjavaapi.enums.GeneralErrorCodes;
 
 public class EAGeneralErrorException extends RuntimeException{
 
-    private ErrorCodes errorCodes;
+    private GeneralErrorCodes generalErrorCodes;
 
     public final static String provaErrorMessage_001 = "PROVA ERRORE MESSAGGIO GENERALE";
 
@@ -12,15 +12,15 @@ public class EAGeneralErrorException extends RuntimeException{
         super("MESSAGGIO ERRORE GENERALE --> " + message);
     }
 
-    public EAGeneralErrorException(ErrorCodes errorCodes){
-        super("MESSAGGIO ERRORE GENERALE --> " + errorCodes.getErrorMessage());
+    public EAGeneralErrorException(GeneralErrorCodes generalErrorCodes){
+        super("MESSAGGIO ERRORE GENERALE --> " + generalErrorCodes.getErrorMessage());
     }
 
     public EAGeneralErrorException(String errorCode, String message){
 
     }
 
-    public ErrorCodes getErrorCodes() {
-        return errorCodes;
+    public GeneralErrorCodes getGeneralErrorCodes() {
+        return generalErrorCodes;
     }
 }

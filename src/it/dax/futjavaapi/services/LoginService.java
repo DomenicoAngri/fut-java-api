@@ -281,6 +281,7 @@ public final class LoginService{
 //
 //    }
 
+    // TODO - Gestire i messaggi di errore nelle classi di servizio.
     private String initializeServices(String uri) throws IOException{
         // Istanzio una nuova request dall'url.
         // Se l'uri è vuoto, significa che siamo al primo step, altrimenti al secondo e lo valorizzo.
@@ -305,11 +306,9 @@ public final class LoginService{
         // Execute della request che ritorna la response.
         if(httpResponse.getHeaders("Location").length == 0){
             if(uri.isEmpty()) {
-                logger.error("Step 1 - Impossible contact servers. Please repeat login operation.");
                 throw new EABadRequestException("Step 1 - Impossible contact servers. Please repeat login operation.");
             }
             else{
-                logger.error("Step 2 - Impossible retrive execution and initref informations; maybe servers are down. Please repeat login operation.");
                 throw new EABadRequestException("Step 2 - Impossible retrive execution and initref informations; maybe servers are down. Please repeat login operation.");
             }
         }
@@ -345,7 +344,6 @@ public final class LoginService{
         setCookies(httpResponse);
 
         if(httpResponse.getHeaders("Location").length == 0){
-            logger.error("Step 3 - Bad request to server. Check uri params");
             throw new EABadRequestException("Bad request to server.");
         }
         else

@@ -1,14 +1,13 @@
 package it.dax.futjavaapi.enums;
 
-public enum ErrorCodes{
+public enum GeneralErrorCodes{
 
-    ERROR_000(000, "Test_000"),
-    ERROR_001(001, "Test_001");
+    ERROR_000(000, "TEST000");
 
     private final int errorNumber;
     private final String errorMessage;
 
-    ErrorCodes(final int errorNumber, final String errorMessage){
+    GeneralErrorCodes(final int errorNumber, final String errorMessage){
         this.errorNumber = errorNumber;
         this.errorMessage = errorMessage;
     }

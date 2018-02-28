@@ -1,6 +1,5 @@
 package it.dax.futjavaapi.main;
 
-import it.dax.futjavaapi.enums.ErrorCodes;
 import it.dax.futjavaapi.exceptions.EAGeneralErrorException;
 import it.dax.futjavaapi.services.EAHashingAlgorithm;
 import it.dax.futjavaapi.services.LoginService;
