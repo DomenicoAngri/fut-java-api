@@ -16,7 +16,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -78,18 +77,7 @@ public final class LoginService{
         oneTimeInsertedCode = "";
     }
 
-    public void temporaryTest() throws Exception{
-//        logger.debug("LOCATION: " + getUriWithFidParam(true, "https://accounts.ea.com/connect/auth?" + "prompt=login" +
-//                        "&accessToken=null" +
-//                        "&client_id=" + "asijdajisjdias" +
-//                        "&response_type=token" +
-//                        "&display=web2/loginasdaidasid" +
-//                        "&locale=" + "ijajijsdjaisjdia" +
-//                        "&redirect_uri=" + "aisidaijdiajsidjiajsidjaisjida" +
-//                        "&scope=basic.identity+offline+signin"));
-
-    }
-
+    // TODO - Gestire eccezione IO e mettere i log.
     public final void login(String username, String password, AuthType authType){
         try{
             uriWithFidParameter = initializeServices("");
@@ -101,8 +89,13 @@ public final class LoginService{
             uriPostLogin = postLogin(uriWithExecutionAndInitref, username, password);
             logger.debug(uriPostLogin);
 
-            // uriFromWithEndParam = getWithEndParam(uriPostLogin, authType);
+            // Check if login is correct
+            uriFromWithEndParam = getWithEndParam(uriPostLogin);
             logger.debug(uriFromWithEndParam);
+
+            // Send choice for type
+            uriFromSetCodeType = postSetCodeType(uriFromWithEndParam, authType);
+            logger.debug(uriFromSetCodeType);
         }
         catch(IOException ioe){
             logger.fatal("Cannot execute request!");
@@ -111,78 +104,35 @@ public final class LoginService{
         }
     }
 
+    // TODO - Verificare tutti i metodi e vedere cosa far ritornare a questo
     public final void sendOneTimeCode(String oneTimeCode, String securityAnswer, Platforms platform){
+        try{
+            uriFromSendOneTimeCode = postSendOneTimeCode(uriFromSetCodeType, oneTimeCode);
+            logger.debug(uriFromSendOneTimeCode);
 
-    }
+            accessToken = getAccessToken(uriFromSendOneTimeCode);
+            logger.info(accessToken);
 
-    public final void login(String username, String password, String oneTimeCode, String securityAnswer, Platforms platform){
-        logger.debug("Ciao sono nel test login.");
-        logger.info("Ciao sono nel test login.");
-        logger.warn("Ciao sono nel test login.");
-        logger.error("Ciao sono nel test login.");
-        logger.fatal("Ciao sono nel test login.");
+            getPidData(accessToken);
+            getShardsData();
+            getAccountInfo();
 
+            authCode = getAuthorizationCode(accessToken);
+            logger.debug(authCode);
 
+            postGetSidCode(authCode, platform);
+            getValidateQuestion();
+            postValidateAnswer(securityAnswer);
+        }
+        catch(IOException ioe){
 
-
-
-
-
-
-
-
-//        uriFromSetCodeType = postSetCodeType(uriFromWithEndParam, oneTimeCode.isEmpty() ? true : false);
-//        if(uriFromSetCodeType.equals("EXIT"))
-//            return;
-//        System.out.println(uriFromSetCodeType);
-//
-//        uriFromSendOneTimeCode = postSendOneTimeCode(uriFromSetCodeType, oneTimeCode.isEmpty() ? oneTimeInsertedCode : oneTimeCode);
-//        System.out.println(uriFromSendOneTimeCode);
-//
-//        accessToken = getAccessToken(uriFromSendOneTimeCode);
-//        System.out.println("Access token = " + accessToken);
-//
-//        getPidData(accessToken);
-//
-//        getShardsData();
-//
-//        getAccountInfo();
-//
-//        authCode = getAuthorizationCode(accessToken);
-        System.out.println("Auth-code = " + authCode);
-
-//        postGetSidCode(authCode, platform);
-//
-//        getValidateQuestion();
-//
-//        postValidateAnswer(securityAnswer);
-
-        String club = "";
-        for(UserClubList userClubList : userAccount.getUserAccountInfo().getPersonas().get(0).getUserClubList())
-            if(userClubList.getYear().equals("2018"))
-                club += userClubList.getClubName();
-
-        if(answer.getReason().equals("Answer is correct.")){
-            System.out.println();
-            System.out.println("Benvenuto " + userAccount.getUserAccountInfo().getPersonas().get(0).getPersonaName() + "!");
-            System.out.println("La tua squadra si chiama: " + club + ".");
-            System.out.println("Sei pronto a dominare il mercato di FUT...?!");
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public final void login(String username, String password, String oneTimeCode, String securityAnswer, Platforms platform){
+        login(username, password, AuthType.APP);
+        sendOneTimeCode(oneTimeCode, securityAnswer, platform);
+    }
 
 
 
@@ -211,81 +161,49 @@ public final class LoginService{
 
 
     // TODO - OK - {Deprecated}
-//    private String getUriWithFidParam(boolean tempTest, String uri) throws IOException{
-//        // Istanzio una nuova request dall'url.
-//        HttpGet httpGet = new HttpGet(ServicesConstants.FID_URI);
-//
-//        // Setto i parametri nell'header della richiesta.
-//        setCommonHeaderParams(httpGet);
-//
-//        // Execute della richiesta.
-//        HttpResponse httpResponse = httpClient.execute(httpGet);
-//
-//        // Setto cookie se questi ci sono.
-//        setCookies(httpResponse);
-//
-//        // Execute della request che ritorna la response.
-//        if(httpResponse.getHeaders("Location").length == 0){
-//            logger.error("Bad request to server.");
-//            throw new EABadRequestException("Bad request to server.");
-//        }
-//        else
-//            return httpResponse.getHeaders("Location")[0].getValue();
-//    }
+    @Deprecated
+    private String getUriWithFidParam(boolean tempTest, String uri) throws IOException{
+        // Istanzio una nuova request dall'url.
+        HttpGet httpGet = new HttpGet(ServicesConstants.FID_URI);
+
+        // Setto i parametri nell'header della richiesta.
+        setCommonHeaderParams(httpGet);
+
+        // Execute della richiesta.
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+
+        // Setto cookie se questi ci sono.
+        setCookies(httpResponse);
+
+        // Execute della request che ritorna la response.
+        if(httpResponse.getHeaders("Location").length == 0){
+            logger.error("Bad request to server.");
+            throw new EABadRequestException("Bad request to server.");
+        }
+        else
+            return httpResponse.getHeaders("Location")[0].getValue();
+    }
 
     // TODO - OK - {Deprecated}
-//    private String getUriWithExecutionAndInitref(String uriWithFidParam) throws IOException{
-//        HttpGet httpGet = new HttpGet(uriWithFidParam);
-//        setCommonHeaderParams(httpGet);
-//        HttpResponse httpResponse = httpClient.execute(httpGet);
-//        setCookies(httpResponse);
-//
-//        if(httpResponse.getHeaders("Location").length == 0){
-//            logger.error("Bad request to server.");
-//            throw new EABadRequestException("Bad request to server.");
-//        }
-//        else
-//            return httpResponse.getHeaders("Location")[0].getValue();
-//    }
+    @Deprecated
+    private String getUriWithExecutionAndInitref(String uriWithFidParam) throws IOException{
+        HttpGet httpGet = new HttpGet(uriWithFidParam);
+        setCommonHeaderParams(httpGet);
+        HttpResponse httpResponse = httpClient.execute(httpGet);
+        setCookies(httpResponse);
 
-    // Idea di unificare tutti i servizi in solo due generali, ma è possibile farlo solo per alcuni, altri troppo specifici richiedono di essere personalizzati in base al ritorno
-//    private String getRequest(String uri, List<Header> headersList) throws IOException{
-//        HttpGet httpGet = new HttpGet(uri);
-//
-//        // Setto i parametri nell'header della richiesta.
-//        setCommonHeaderParams(httpGet);
-//
-//        if(!headersList.isEmpty())
-//            for(Header header : headersList)
-//                httpGet.setHeader(header.getName(), header.getValue());
-//
-//        // Setto cookie
-//        httpGet.setHeader("Cookie", cookies);
-//
-//        // Execute della richiesta.
-//        HttpResponse httpResponse = httpClient.execute(httpGet);
-//
-//        // Setto cookie se questi ci sono.
-//        setCookies(httpResponse);
-//
-//        // Execute della request che ritorna la response.
-//        if(httpResponse.getHeaders("Location").length == 0){
-//            logger.error("Bad request to server.");
-//            throw new EABadRequestException("Bad request to server.");
-//        }
-//        else
-//            return httpResponse.getHeaders("Location")[0].getValue();
-//    }
-//
-//    private String postRequest(String uri, List<Header> headersList, List<NameValuePair> uriParams){
-//
-//    }
+        if(httpResponse.getHeaders("Location").length == 0){
+            logger.error("Bad request to server.");
+            throw new EABadRequestException("Bad request to server.");
+        }
+        else
+            return httpResponse.getHeaders("Location")[0].getValue();
+    }
 
     // TODO - Gestire i messaggi di errore nelle classi di servizio.
     private String initializeServices(String uri) throws IOException{
         // Istanzio una nuova request dall'url.
         // Se l'uri è vuoto, significa che siamo al primo step, altrimenti al secondo e lo valorizzo.
-        // TODO - Qui non si dovrebbe mai verificare l'eccezione dell'httpGet vuota, ma fare diversi giri di test per vedere..
 
         HttpGet httpGet;
 
@@ -304,19 +222,16 @@ public final class LoginService{
         setCookies(httpResponse);
 
         // Execute della request che ritorna la response.
-        if(httpResponse.getHeaders("Location").length == 0){
-            if(uri.isEmpty()) {
+        if(httpResponse.getHeaders("Location").length == 0)
+            if(uri.isEmpty())
                 throw new EABadRequestException("Step 1 - Impossible contact servers. Please repeat login operation.");
-            }
-            else{
+            else
                 throw new EABadRequestException("Step 2 - Impossible retrive execution and initref informations; maybe servers are down. Please repeat login operation.");
-            }
-        }
         else
             return httpResponse.getHeaders("Location")[0].getValue();
     }
 
-    // TODO - OK
+    // TODO - Vedere se lasciare le stringhe così + gestione degli errori.
     private String postLogin(String uriWithExecutionAndInitref, String username, String password) throws IOException{
         HttpPost httpPost = new HttpPost(ServicesConstants.BASE_SIGNIN_URI + uriWithExecutionAndInitref);
 
@@ -376,7 +291,7 @@ public final class LoginService{
         httpPost.setHeader("Content-Type", ServicesConstants.URL_ENCODED_FORM);
 
         List<NameValuePair> uriParams = new ArrayList<>();
-        uriParams.add(new BasicNameValuePair("codeType", authType.getValue()));
+        uriParams.add(new BasicNameValuePair("codeType", authType.getPlatform()));
         uriParams.add(new BasicNameValuePair("_eventId", "submit"));
         httpPost.setEntity(new UrlEncodedFormEntity(uriParams, Consts.UTF_8));
 
